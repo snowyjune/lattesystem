@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+	<SCRIPT src="http://code.jquery.com/jquery-1.7.2.min.js"></SCRIPT>
+	<SCRIPT src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></SCRIPT>
+	<LINK href="http://code.jquery.com/ui/1.8.21/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../js/socket.js"></script>
+	<script type="text/javascript" src="../js/dto.js"></script>
+	<script type="text/javascript" src="../js/script_func.js"></script>
+	<script type="text/javascript" src="../js/worksheet.js"></script></head>
+	<link rel="stylesheet" type="text/css" href="./make_worksheet.css" />
+
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body>
+	 <div id="wrapper">
+	 	 <script type="text/javascript" src="../js/inc/header.js"> </script>
+		 <div id="content_body">
+		 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
+		 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
+			 <div id="content">
+				<div id="inside">
+					<div> <h2>Work Sheet 작성하기</h2> </div>
+					<div id="back">
+						<script>
+							var worksheetRoutes = sessionStorage["worksheetRoutes"];
+							document.write('<div id="myImage"><img src="http://lattetime.cafe24.com:8888/'+worksheetRoutes+'" style="width:1200px;height:900px;"></div>');
+						</script>
+					</div>
+
+					<div id="menuWrapper">
+					<div id="answer">ANSWER</div>
+					<div id="wsmenu">
+						<div onClick="javascript:add()" id="add">ADD</div>
+						<div onClick="javascript:saveWorksheet()" id="save"><h2>SAVE</h2></div>
+					</div><!-- end of menu -->
+
+					</div><!-- end of menuWrapper-->
+
+				</div><!-- inside -->
+			</div><!-- content -->
+		 </div><!-- content_body -->
+	 </div><!-- wrapper -->
+</body>
+	<script>
+		$(window).load(function() {
+		connect();
+		setting();
+		connectAfterUpload();
+		console.log("=========================");
+		console.log($('#myImage').offset());	
+		console.log("=========================");
+		$("#menuWrapper").draggable();
+		});
+	</script>
+</html>

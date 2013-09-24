@@ -1,0 +1,257 @@
+@charset "utf-8";
+/* CSS Document */
+  body{
+
+  margin:0px 0px 0px 0px;
+  width:100%;
+  color:#000000;
+  min-height:800px;
+ } 
+
+ html{
+ }
+
+ A:link {text-decoration:none;} 
+ A:visited {text-decoration:none;} 
+ A:hover {text-decoration:none;} 
+ 
+ .btn_logout {
+ 	border: 0px;
+	color:#FFFFFF;
+	font-size:11px;
+	text-decoration:none;
+	background-color:#427388;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	display:inline-block;
+	text-shadow:1px 1px 0px #65a6cf;
+	margin:18px 0px 0px 5px;;
+	float:right;
+ }
+ .btn_logout:hover {
+	background-color:rgba(66,114,135,0.7);
+ }
+ .btn_logout:active {
+	position:relative;
+	top:1px;
+ }
+
+ #wrapper {
+ }
+
+ #content_body {
+ }
+
+ #menu {
+  float:left;
+  background-image:url('/img/menu.png');
+  width:180px;
+  height:800px;
+ 
+ }
+ .sidemenu_style {
+	 margin: 15px 0px;
+	 
+ }
+ .menu_content {
+	 padding: 15px 0px;
+ }
+  #sub-menu {
+  	background-image: url('/img/classlist.png');
+    float:left;
+    width:154px;
+    height: 800px;
+ }
+ #sub-sub-menu {
+  	background-image: url('/img/classlist.png');
+    float:left;
+    width:100px;
+    height: 800px;
+ }
+ #sub_sub_menu_content {
+	 padding:10px;
+ }
+  #sub-sub-sub-menu {
+  	background-image: url('/img/classlist.png');
+    float:left;
+    width:50px;
+    height: 800px;
+ }
+ #sub_sub_sub_menu_content {
+	 padding:10px;
+ }
+ #content {
+  float:left;
+  width:576px;
+ }
+
+ #inside {
+  margin:15px 0px 0px 10px;
+  line-height: 1.7em;
+ }
+ 
+ #lecture_list {
+	 border:3px;
+	 border-color:#427388;
+	 border-style: solid;
+	 width: 650px;
+	 
+ }
+ .lecture_content {
+	color: #4E7388;
+	font-size:16px;
+	font-weight:bold;
+}
+.lecture_content:hover {
+	color:#97BDD4;
+}
+.lecture_content:active {
+	position:relative;
+	top:1px;
+}
+  
+ #sub_menu_content {
+	 padding:10px;
+ }
+ #sub_menu_content > A:link{
+	 line-height: 2em;
+	  	color:#FFFFFF;
+
+ }
+ #sub_menu_content > A:hover{
+ 	color:#427388;
+ }
+ 
+ #menu_content {
+	  border-right-width: 3px;
+	  border-right-style: solid;
+	  height: 100%;
+ }
+ 
+#m_header {
+	background-image:url('/img/top.png');
+	height: 50px;
+	padding: 5px;
+}
+
+#m_header .m_header_content {
+	text-align: right;
+	color: white;
+	margin-top: -3px;
+	margin-right: 10px;
+}
+
+.font_style {
+	color: #4E7388;
+}
+#new_lecture {
+	padding: 8px 230px;
+	margin : 10px 0px 0px 17px;
+	background-color: #97BDD4;
+	color: #4E7388;
+	font-size:16px;
+	font-weight:bold;
+}
+#new_lecture:hover {
+	background-color:rgba(150,188,212,0.75);
+}
+#new_lecture:active {
+	position:relative;
+	top:1px;
+}
+
+.student_info {
+	padding: 5px;
+	margin : 10px 0px 10px 0px;
+	width:640px;
+	text-align: center;
+	background-color: #97BDD4;
+	color: #4E7388;
+	font-size:16px;
+	font-weight:bold;
+}
+.student_info:hover {
+	background-color:rgba(150,188,212,0.75);
+}.student_info:active {
+	position:relative;
+	top:1px;
+}
+
+td {
+	text-indent: 20px;
+	color: #4E7388;
+
+}
+
+
+/* my lecture */
+section {backgraound-color:rgba(255,255,255,0.1); }
+ section hgroup { background: #97BDD4;  padding-left: 10px; color: #4E7388;}
+ section article { padding-left:15px;}
+ .more {float: right; padding-right: 10px;}
+ .fold {float: right;padding-right: 10px;}
+
+
+#font_style {
+	border-bottom:2px;
+	border-bottom-style:solid;
+	padding:5px 10px;
+}
+
+.class_object {
+	width:300px;
+	background-color:#FFFFFF;
+	float:left;
+	border:3px;
+	border-style:solid;
+}
+
+.add_object {
+	 width:300px;
+	 background-color:#ffdddd;
+	 float:left;
+	 margin-left:20px;
+	 border:3px;
+	 border-style:solid;
+}
+
+#wsmenu{
+position:fixed;
+height:100%;
+width:200;
+background-color:yellow;
+top:0;
+left:1650;
+}
+
+#myImage{
+position:absolute;
+z-index:10;
+}
+
+.haha{
+position:relative;
+top:0;
+left:0;
+background-color:yellow;
+z-index:100;
+}
+
+#back{
+position:relative;
+top:0;
+left:0;
+height:850px;
+width:650px;
+background-color:green;
+}
+
+#answer{
+	position:fixed;
+	height:100%;
+	width:200;
+	background-color:pink;
+	top:0;
+	left:1450;
+}

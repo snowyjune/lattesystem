@@ -1,0 +1,56 @@
+body{
+overflow-x:hidden;
+overflow-y:hidden
+}  
+
+#background{
+    height:900;
+    width:1200;
+    text-align:center;
+}
+
+#ppt_screen{
+    background-color: white;
+    height:900;
+    width:1200;
+    margin:auto;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#progress{
+position:absolute;
+right:0;
+top:0;
+width:200;
+height:100;
+background-color:green;
+background-image:url("./image/work_b.png");
+overflow:auto;
+
+}
+
+#con{
+height:800;
+}
+
+#progressContainer{
+position:fixed;
+right:0;
+top:0;
+}
+
+#button{
+position:fixed;
+right:200;
+width:15;
+top:0;
+height:100%;
+background-image:url("./image/work_a.png");
+}
+
+#progress b{
+color:white;
+font-size:130%;
+}

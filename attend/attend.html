@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<script type="text/javascript" src="../js/main.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+	    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+	    <script type="text/javascript" src="../js/socket.js"></script>
+		<script type="text/javascript" src="../js/dto.js"></script>
+		<script type="text/javascript" src="../js/script_func.js"></script>	
+	</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<body >
+		 <div id="wrapper">
+		 	<script type="text/javascript" src="../js/inc/header.js"> </script>
+			 <div id="content_body">
+			 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
+			 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
+				 <div id="content">
+					<div id="inside">
+					<div class="font_style"><H1> 성적 관리 </H1></div><!--fontstyle -> subject-->
+
+					<table border="1px" width="650px">
+	                <script>
+	                	var attendInfo = new Array();
+	                	attendInfo = JSON.parse(sessionStorage["attendInfo"]);
+	                	lecCnt = sessionStorage["lecCnt"];
+	                	document.write('<tr><th>이름');//횟수 받아오기
+	                	for(i = 0; i < lecCnt; i++) {
+		                	document.write('<th>'+(i+1)+'</th>');
+	                	}
+	                	
+	                	document.write('<tr><td>'+attendInfo[0].studentId+'</td>');//이름 입력
+	                	var tmpLecCnt = lecCnt;
+	                	var attendance = 'X';
+	                	for(i = 0; i < attendInfo.length - 1 ; i++) {
+	                		tmpLecCnt--;
+	                		if (attendInfo[i].attendance == 0)
+		                		attendance = '결석';
+	                		else if (attendInfo[i].attendance == 1)
+	                			attendance = '출석';
+	                		else 
+	                			attendance = '지각';
+	                			
+	                		if (tmpLecCnt == 0) {
+		                		document.write('<td>'+attendance+'</td>'); //현재 출석정보 넣고
+		                		document.write('</tr><tr><td>'+attendInfo[i+1].studentId+'</td>'); //줄나눔 & 이름 입력
+		                		tmpLecCnt = lecCnt;
+	                		} else {
+		                		document.write('<td>'+attendance+'</td>');//현재 출석정보 입력
+
+	                		}
+	                	}//나옴
+	                	if (attendInfo[i].attendance == 0)
+		                		attendance = '결석';
+	                		else if (attendInfo[i].attendance == 1)
+	                			attendance = '출석';
+	                		else 
+	                			attendance = '지각';
+	                	document.write('<td>'+attendance+'</td>'); //마지막 출석정보 넣고 i+1
+		                		document.write('</tr>');//끝내고 
+	                </script>
+	                </table>
+	                <!--style="height:100%;width:100%"-->
+					</div><!--inside-->
+				</div><!--content-->
+
+			 </div><!--content body-->
+	
+		 </div><!--wrapper-->
+
+	</body>
+	<script>
+		$(window).load(function() {
+		connect();
+		});
+	</script>
+
+</html>

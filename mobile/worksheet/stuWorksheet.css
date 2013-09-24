@@ -1,0 +1,29 @@
+body{
+overflow-x:hidden;
+}  
+
+#background{
+    height:900;
+    width:1200;
+    text-align:center;
+}
+
+#ppt_screen{
+    background-color: red;
+    height:900;
+    width:1200;
+    margin:auto;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+#sendButton{
+width:212;
+height:50;
+position:fixed;
+bottom:2%;
+right:2%;
+background-color:red;
+background-image:url("./image/send.png");
+}

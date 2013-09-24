@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../js/socket.js"></script>
+	<script type="text/javascript" src="../js/dto.js"></script>
+	<script type="text/javascript" src="../js/script_func.js"></script>	
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body>
+	 <div id="wrapper">
+	 	 <script type="text/javascript" src="../js/inc/header.js"> </script>
+		 <div id="content_body">
+		 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
+		 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
+			 <div id="content">
+				<div id="inside">
+					<div id="upload_form" style="border:2px; border-style:solid;padding-left:10px;">
+					<form method="post" enctype="multipart/form-data" action="/upload" onSubmit="return checkform()">
+					    <script>
+					    	id = sessionStorage["id"];
+					    	document.write('<input type="hidden" name="id" id="id" value="'+id+'">');
+					    </script>
+					    <input type="hidden" name="type" id="type" value="CARD_GAME">
+						    <table id="word_table">
+							    <tr>
+								    <td>영단어</td>
+								    <td>뜻</td>
+							    </tr>
+							    <tr>
+								    <td><input type="text" name="eng_word" class="eng_word"></td>
+								    <td><input type="text" name="kor_word" class="kor_word"></td>
+							    </tr>
+						    </table>
+						    <input type="button" value="+" onclick="javascript:addTableRow();">
+					    <input type="submit">
+					</form>
+					</div><!--upload_form-->
+				</div><!-- inside -->
+			</div><!-- content -->
+		 </div><!-- content_body -->
+	 </div><!-- wrapper -->
+</body>
+	<script>
+		$(window).load(function() {
+		connect();
+		connectAfterUpload();
+		sessionStorage.setItem("uploadType", "PPT");
+		sessionStorage.setItem("uploadState","NO");
+
+		});
+		
+		
+		function addTableRow(){
+			var table = $('#word_table tr');
+			var rowlen = table.length;
+			table.eq(rowlen-1).after('<tr><td><input type="text" name="eng_word" class="eng_word"></td><td><input type="text" name="kor_word" class="kor_word"></td></tr>');
+
+		}
+		
+		function checkform() {
+			if(){
+				return false;
+			} esle if() {
+				return false;
+			}
+			
+			return true;
+		}
+		
+		
+		
+	</script>
+</html>

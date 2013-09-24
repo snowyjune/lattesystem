@@ -1,0 +1,104 @@
+ 
+body{
+overflow-x:hidden;
+overflow-y:hidden
+} 
+ 
+
+#login{
+height:100%;
+}
+ 
+
+#background{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display:table;
+    text-align:center;
+}
+
+#attendance_book{
+    margin-top:3%;    
+    width: 100%;
+    height: 100%;
+}
+
+#bebob{
+width:100%;
+height:100%;
+}
+
+#ppt_pallet{
+    position: fixed;
+    top: 0;
+    right: -127;    
+    width: 150;
+    height: 100%;
+    background-color: 99CCCC;
+    background-image: url("./image/ppt_b.png");
+    
+    display:block;
+    z-index:90;
+}
+
+#ppt_pallet_button{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 100%;
+    background-color: 9999FF;
+    background-image:url("./image/ppt_a.png");
+    background-size:100% 100%;
+    display:block;
+    z-index:90;
+}
+
+#dummy{
+    width: 100%;
+    height: 21;
+}
+
+#ppt_contents{
+    width: 100%;
+    height: 100%;
+}
+
+#pen{
+    height: 100;
+    width:100%;
+}
+
+#ppt_pen{
+width:78;
+height:78;
+background-image:url("./image/ppt_pen.png");
+margin:auto;
+}
+
+#ppt_share{
+width:78;
+height:78;
+background-image:url("./image/ppt_share.png");
+margin:auto;
+}
+
+
+#share{
+    height: 100;
+    width:100%;
+}
+
+
+#pptCanvas{
+    position: absolute;
+    width:100%;
+    height:100%;
+    z-index:50;  
+    left:0;
+
+}
+

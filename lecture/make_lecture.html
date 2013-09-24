@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<style>
+			section > article {
+				color:black;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<script type="text/javascript" src="../js/main.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+	    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+	    <script type="text/javascript" src="../js/socket.js"></script>
+		<script type="text/javascript" src="../js/dto.js"></script>
+		<script type="text/javascript" src="../js/script_func.js"></script>
+		<script type="text/ecmascript">
+		/*
+		$(document).ready(function(){
+			$("article").hide();
+			$(".fold").hide();
+			$("section").toggle(openAccordion, closeAccordion);
+		});
+		function openAccordion() { 
+			$(".fold",this).show();
+			$(".more",this).hide();
+			$("article",this).show("fast");
+		}
+		function closeAccordion() {
+			$(".more",this).show();
+			$(".fold",this).hide(); 
+			$("article",this).hide("fast");
+		}*/
+		function pptListChecked(obj) {
+			if( obj.checked ) {
+				addActivity(obj.value);
+				/* var pptList = JSON.parse(sessionStorage["pptList"]);
+				   $("#selected_list").append($('<span>'+ pptList[obj.value].actName +'</span></br>')); */
+			} else {
+				deleteActivity(obj.value);
+			}
+		}
+		function worksheetListChecked(obj) {
+			if( obj.checked ) {
+				addActivity(obj.value);
+				/* var worksheetList = JSON.parse(sessionStorage["worksheetList"]);
+				   $("#selected_list").append($('<span>'+ worksheetList[obj.value].actName +'</span></br>')); */
+			} else {
+				deleteActivity(obj.value);
+			}
+		}
+	</script>
+	</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<body>
+		 <div id="wrapper">
+		 	<!-- header -->
+		 	<script type="text/javascript" src="../js/inc/header.js"> </script>
+			<div id="content_body">
+				<!-- menu -->
+			 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
+			 	<!-- sub menu -->
+			 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
+				 <div id="content"  style="width:660px;">
+					<div id="inside">
+					<script>
+					document.write('<div class="font_style"><H1> Lecture Name :' + sessionStorage["selLectureName"] + '</H1></div>');
+					</script>
+						<div id="class_object" style="width:300px;background-color:#FFFFFF;float:left;border:3px;border-style:solid;">
+							<div class="font_style" style="border-bottom:2px;border-bottom-style:solid;padding:5px 10px;">PPT LIST</div>
+							<div id="activity_list" class="activity_list">
+								<div id="ppt_list" style="color:black;">
+									<script>
+										var pptList = JSON.parse(sessionStorage["pptList"]);
+				                    	var selPptList = JSON.parse(sessionStorage["selPptList"]);				                  
+										for(i = 0; i < pptList.length; i++) { //activityNum, activityName 
+											checked = '';
+											for( j = 0; j < selPptList.length ; j++) {
+												if (pptList[i].actNum == selPptList[j].actNum) {
+													checked = 'checked = "checked"';
+													break;
+												}
+											}
+											document.write('<input type="checkbox" name="ppt_list" value="'+ pptList[i].actNum + '" onclick="pptListChecked(this);" '+ checked +'/><span>'+pptList[i].actName +'</span></br>');
+										}
+										if(pptList.length == 0) {
+											document.write("PPT 목록이 없습니다.");
+										}
+									</script>
+								</div>
+							</div>		<!-- activity List -->
+						</div>
+						
+						<div id="added_object" style="width:300px;background-color:#FFFFFF;float:left;border:3px;border-style:solid;">
+							<div class="font_style" style="border-bottom:2px;border-bottom-style:solid;padding:5px 10px;">WORKSHEET LIST</div>
+							<div id="activity_list" class="activity_list">
+								<div id="worksheet_list" style="color:black;">
+								
+									<script>
+				                    	var worksheetList = JSON.parse(sessionStorage["worksheetList"]);
+				                    	var selWorksheetList = JSON.parse(sessionStorage["selWorksheetList"]);
+				                    	for(i = 0; i < worksheetList.length; i++) { //activityNum, activityName 
+				                    		checked = '';
+				                    		for( j = 0; j < selWorksheetList.length; j++) {
+					                    		if (worksheetList[i].actNum == selWorksheetList[j].actNum) {
+					                    			console.log("worksheet!!!!");
+						                    		checked = 'checked = "checked"';
+						                    		break;
+					                    		}
+				                    		}
+											document.write('<input type="checkbox" name="worksheet_list" value="'+ worksheetList[i].actNum  + '" onclick="pptListChecked(this);" '+ checked +'/><span>'+worksheetList[i].actName +'</span></br>');
+										}
+										if(worksheetList.length == 0) {
+											document.write("Work Sheet 목록이 없습니다.");
+										}
+									</script>
+								</div>
+							</div>		<!-- activity List -->
+						</div><!--added_object"-->
+					</div><!-- inside -->
+				</div><!-- content -->
+			</div>	<!-- content_body -->
+		 </div>	<!-- wrapper -->
+	</body>
+		<script>
+		$(window).load(function() {
+		connect();
+		});
+	</script>
+</html>

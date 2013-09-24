@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+	
+	<head>
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<script type="text/javascript" src="../js/main.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+	    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+	    <script type="text/javascript" src="../js/socket.js"></script>
+		<script type="text/javascript" src="../js/dto.js"></script>
+		<script type="text/javascript" src="../js/script_func.js"></script>	
+		<script type="text/javascript">
+		function ViewLayer(){
+		  if(document.getElementById("login_box").style.display=="none"){
+		     document.getElementById("login_box").style.display='';
+		     }else{
+		       document.getElementById("login_box").style.display='none';
+		     }
+		}
+		</script>
+	</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<body >
+		 <div id="wrapper">
+		 	<script type="text/javascript" src="../js/inc/header.js"> </script>
+			 <div id="content_body">
+			 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
+			 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
+				 <div id="content">
+					<div id="inside">
+						<div><img src="../img/web_title.png" /></div>
+		                <a href="javascript:getAttendList();"><div class="student_info">반 출결 관리</div></a>
+		                <table id="lecture_list">
+		                	<tr> <td><h3> 수업 목차 </h3></td> </tr>
+		                    <tr>
+		                    	<td>
+		                    	<table>
+		                    	<script>
+			                    	var lectureList = JSON.parse(sessionStorage["lectureList"]);
+			                    	console.log(lectureList);
+									for(i = 0; i < lectureList.length; i++) {
+										var lecNum = lectureList[i].lecNum;
+										var lecName = lectureList[i].lecName;
+										var lecOrder = lectureList[i].lecOrder;  
+										document.write('<tr> <td> <a href="javascript:modifyLecture('+lecNum+',lectureList['+i+'].lecName);"> <div class="lecture_content">'+lecOrder+'차시 - ' +lecName +'</div></a> </td> </tr>');
+									}
+		                        	</script>
+		                        	<tr><td> <div id="new_lecture" onclick="ViewLayer();"><a>새 수업 구성하기 </a></div></td></tr>
+		                        	<tr><td><div id="login_box" style="display:none;">수업이름 : <input type="text" id="lectureName" name="lectureName" size="30px"></input> 수업차시(숫자입력) : <input type="text" id="lectureOrder" name="lectureOrder" size="5px"></input> <div onclick="makeNewLecture(lectureName.value, lectureOrder.value);" style="background-color:#97BDD4;width:70px;float:right;"><a>make</a></div></div></td></tr>
+		                        </table>
+		                        </td>
+		                    </tr>
+		                </table>
+					</div>
+				</div>
+			</div> 
+		 </div>
+	</body>
+	<script>
+		$(window).load(function() {
+		connect();
+		});
+	</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="./css/main.css" />
+				<script type="text/javascript" src="./js/public_ui.js"></script>
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+	    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+	    <script type="text/javascript" src="./js/socket.js"></script>
+		<script type="text/javascript" src="./js/dto.js"></script>
+		<script type="text/javascript" src="./js/script_func.js"></script>
+	</head>	
+	
+	<body>
+		 <div id="wrapper">
+			 <div id="content">
+				<div id="inside">
+					<div><center><img src="./img/title.png" /></center></div>
+					<div id="login_side">
+					<center><img src="./img/id.png" />  <input type="text" name="id" id="id" size="50px" MAXLENGTH="20"></input><br/></center><br/>
+					<center><img src="./img/password.png" />  <input type="text" name="password" id="password" size="50px" MAXLENGTH="20"></input></center><br/><br/>
+					</div>
+					<div onclick="login();"><center><img src="./img/login_btn.png" /></center></div>
+				</div> <!-- inside -->
+			 </div> <!-- content -->
+		 </div> <!-- wrapper -->
+	</body>
+
+	<script>
+	$(window).load(function() {
+	connect();
+	});
+	</script>
+
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+   </head>
+    <body> 
+		<script>
+		
+			var socket;
+		   socket = io.connect('http://lattetime.cafe24.com:8888');
+		      
+
+        socket.on('data', function (res) {
+        console.log("res %j", res);
+                    console.log("result : messageNum - "+res.MessageNum);
+                    console.log("result : id - "+res.id);
+                    console.log("result : success - "+res.success);
+                    //���䰡
+                    switch (parseInt(res.MessageNum, 10)) {
+                        case 302:
+                            console.log("result : is_success - "+res.is_success);
+                            break;
+                        case 304:
+                            console.log("result : is_success - "+res.is_success);
+                            break;
+                        case 306:
+                            console.log("result : subjectList ");
+                            var list = res.subjectList;
+                            for(var i = 0 ; i <list.length ; i++){
+                                console.log((i+1) +"th item =====================================");
+                                console.log("=> subjetNum : " + list[i].subjectNum +" ");
+                                console.log("=> subjetName : " + list[i].subjectName +" ");
+                                console.log("=> className : " + list[i].className +" \n");
+                            }
+                            break;
+                        case 308:
+                            console.log("result : lectureList ");
+                            var list = res.lectureList;
+                             for(var i = 0 ; i <list.length ; i++){
+                                console.log((i+1) +"th item =====================================");
+                                console.log("=> lecNum : " + list[i].lecNum +" ");
+                                console.log("=> lecName : " + list[i].lecName +"\n");
+                            }
+                            break;
+                        case 310:
+                            console.log("result : activityList ");
+                             var list = res.activityList;
+                             for(var i = 0 ; i <list.length ; i++){
+                                console.log( (i+1) +"th item =====================================");
+                                console.log("=> actNum : " + list[i].actNum +" ");
+                                console.log("=> actName : " + list[i].actName +" ");
+                                console.log("=> actType : " + list[i].actType +" ");
+                                console.log("=> actImg : " + list[i].actImg +"\n");
+                            }
+                            break;
+                        case 312:
+                            if(res.success == 1)
+                                console.log("insertion success");
+                            else
+                                console.log("insertion failed");
+                            break;
+                        case 314:
+                            break;
+                        case 316:
+                            break;
+                        case 318:
+                            break;
+                        case 320:
+                            break;
+                        case 322:
+                            console.log("result : attendInfoList ");
+                            var list = res.attendInfo;
+                            for(var i = 0 ; i <list.length ; i++){
+                                console.log( (i+1) +"th item =====================================");
+                                console.log("=> studentNum : " + list[i].studentNum +" ");
+                                console.log("=> attendence : " + list[i].attendence +" ");
+                                console.log("=> studentImg : " + list[i].studentImg +" ");
+                                console.log("=> studentId : " + list[i].studentId +"\n");
+                            }
+                            break;
+                        case 324:
+                            if(res.success == 1)
+                                console.log("deletion success");
+                            else
+                                console.log("deletion failed");
+                            break;
+                       	case 328:
+                       		var list = res.activityList;
+                       		for(var i = 0 ; i < list.length ; i++){
+                       		 	console.log( (i+1) +"th item =====================================");
+                       		 	console.log("=> actNum : " + list[i].actNum +" ");
+                       		 	console.log("=> actName : " + list[i].actName +" ");
+                       		 	console.log("=> actType : " + list[i].actType +" ");
+                       		 	console.log("=> actImg : " + list[i].actImg +"\n");
+                       		}
+                       		break;
+                        case 337:
+                          console.log("actNum is : " + res.activityNum);
+                       		break;
+                    }
+                    
+           });    //end of socket.on
+
+
+		      
+         var dto = new RequestDTO();
+
+				dto.MessageNum = 101;
+				dto.id = "lucybe"
+        dto.password = "lucy";
+        socket.emit('data', dto);
+
+
+			//***********
+			// DTO
+			//***********
+			function RequestDTO()
+			{ 
+				var MessageNum; //Integer
+				var id; // String
+                var password; //String
+  //              var subjectNum;
+//                var lectureNum;
+			}
+		
+			function connectbtn() {
+                console.log("Connection...");
+				document.getElementById('socket').style.visibility='hidden';
+
+
+		 //   	socket = io.connect('http://lattetime.cafe24.com:7777');
+		      socket = io.connect('http://lattetime.cafe24.com:8686');
+		 //     socket = io.connect('http://lattetime.cafe24.com:9999'); 
+    //            socket = io.connect('http://latte_time.snowyjune.c9.io');
+
+                
+			}
+
+			function close() {
+				console.log("Closing...");
+				socket.emit('close');
+			}
+			
+
+function WorkSheetAnswerList(){
+			 var startX ;
+				     var startY;
+				     var width ;
+				     var height ;
+				     var answer ;
+				     var pageNum ;
+			}
+			
+			function WorkSheetAnswerInfo(){
+			 var answerArr;
+			}
+			function sendData(){
+				var dto = new RequestDTO();
+
+				dto.MessageNum = document.getElementById("send_message_type").value;
+				dto.id = document.getElementById("send_id").value;
+				
+                console.log("messagenum : "+ dto.MessageNum);
+                
+
+                switch (parseInt(document.getElementById("send_message_type").value,10)) {
+                    case 301:
+                        dto.password =  document.getElementById("send_pw").value;
+                        break;
+                    case 303:
+                        //nothing
+                        break;
+                    case 305:
+                        //nothing
+                        break;
+                    case 307:
+                        console.log("subject num is " + document.getElementById("subject_num").value);
+                        dto.subjectNum = document.getElementById("subject_num").value;
+                        break;
+                    case 309:
+                         console.log("lecture num is " + document.getElementById("lecture_num").value);
+                        dto.lectureNum = document.getElementById("lecture_num").value;
+                        break;
+                    case 311:
+                        dto.lectureNum = document.getElementById("lecture_num").value;
+                        dto.activityNum =  document.getElementById("activity_num").value;
+                        break;
+                    case 313:
+                        break;
+                    case 315:
+                        break;
+                    case 317:
+                        break;
+
+                    case 321:
+                        dto.subjectNum = dto.password =  document.getElementById("subject_num").value;
+                        break;
+                    case 325:
+                        dto.lectureNum = document.getElementById("lecture_num").value;
+                        dto.activityNum =  document.getElementById("activity_num").value;
+                        break;
+                    case 327:
+                    	//nothing
+                    	break;
+                    case 329:
+                    dto.activityNum =  document.getElementById("activity_num").value;
+                    break;
+                    case 331:
+                    dto.activityNum =  document.getElementById("activity_num").value;
+                    break;	
+                    case 319:
+                     var worksheetAnswer = new WorkSheetAnswerInfo();
+				   var answerArr = [];
+				   var tempAnswer = new WorkSheetAnswerList();
+				   tempAnswer.pageNum = 0;
+				    tempAnswer.startX = 0;
+				    tempAnswer.startY = 0;
+				    tempAnswer.width = 20;
+				    tempAnswer.height = 20;
+				    tempAnswer.answer = "doooo";
+				    
+				   answerArr[0] = tempAnswer;
+				    var tempAnswer2 = new WorkSheetAnswerList();
+				    tempAnswer2.startX = 50;
+				    tempAnswer2.startY = 50;
+				    tempAnswer2.width = 100;
+				    tempAnswer2.height = 40;
+				    tempAnswer2.answer = "gooo";
+				    tempAnswer2.pageNum = 0;
+				   answerArr[1] = tempAnswer2;
+				   
+				   worksheetAnswer.answerArr = answerArr;
+				   
+				   dto.workSheetInfo = worksheetAnswer;
+				    dto.activityNum =  document.getElementById("activity_num").value;
+                    break;
+                    
+                     case 333:
+                     dto.activityNum =  document.getElementById("activity_num").value;
+                    break;
+                      case 335:
+                     dto.workSheetAnswerNum =  document.getElementById("workSheetAnswerNum").value;
+                    break;
+                    
+                    
+                    case 339:
+                     dto.subjectNum = dto.password =  document.getElementById("subject_num").value;
+                    break;
+                    
+                }
+                
+
+				socket.emit('data', dto);
+                console.log("send : %j", dto);
+			}
+
+		</script>
+
+		<input type="button" onclick="javascript:connectbtn();" id="socket" value="webpage"></input>
+
+		<input type="button" onclick="javascript:close()" value="close"></input>
+		message type<input type="text" id="send_message_type" ></input>
+		ID:<input type="text" id="send_id"></input>
+        PW:<input type="text" id="send_pw"></input>
+        subjectNum:<input type="text" id="subject_num"></input>
+        lectureNum:<input type="text" id="lecture_num"></input>
+        activityNum:<input type="text" id="activity_num"></input>
+         workSheetAnswerNum:<input type="text" id="workSheetAnswerNum"></input>
+		<button type="button" onclick="sendData();">send</button>
+		
+		<form method="post" enctype="multipart/form-data" action="/upload">
+    id : <input type="text" name="id" id="id">
+    type : <input type="text" name="type" id="type">
+    activity_name : <input type="text" name="activity_name" id="activity_name">
+    <input type="file" name="uploadfile">
+    <input type="submit">
+    </form>
+	</body>
+</html>

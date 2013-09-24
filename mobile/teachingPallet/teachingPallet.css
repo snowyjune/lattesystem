@@ -1,0 +1,83 @@
+#teaching_pallet{
+    position: fixed;
+    top: -154;
+    left: 0;
+    width: 100%;
+    height: 176;
+    background-color: red;
+    display:block;
+    z-index:100;
+    margin-bottom:0;
+    padding-bottom:0;
+
+}
+
+#teaching_back{
+    position: absolute;
+    top: 45;
+    left: 20;
+    width:78;
+    height:78;
+    background-image:url("./image/back.png");
+    background-size:100% 100%;
+}
+
+#teaching_attendance{
+    position: absolute;
+    top: 45;
+    left: 118;
+    width:78;
+    height:78;
+    background-image:url("./image/menu_attendance.png");
+    background-size:100% 100%;
+
+}
+#teaching_grouping{
+    position: absolute;
+    top: 45;
+    left: 215;
+    width:78;
+    height:78;
+    background-image:url("./image/menu_grouping.png");
+    background-size:100% 100%;
+
+}
+
+#teaching_menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:153;
+    width:322;
+    background-color:red;
+    background-image:url("./image/aa.png");
+    text-align:center;
+}
+
+#teaching_contents{
+    position: absolute;
+    top: 0;
+    left: 322;
+    background-color:blue;
+    width:100%;
+    height:153;
+    background-image:url("./image/bb.png");
+}
+
+#teaching_pallet_button2{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 23px;
+    background-color: red;
+    text-align:center;
+    display:block;
+    z-index:100;
+    background-image:url("./image/menu_pull.png");
+    background-position:center; 
+    background-size:100% 27;
+    margin-bottom:0;
+    padding-bottom:0;
+}
+

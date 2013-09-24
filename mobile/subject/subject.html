@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />    
+    <META name="apple-mobile-web-app-capable" content="yes" />
+    <META name="apple-mobile-web-app-status-bar-style" content="black" />
+    <SCRIPT src="http://code.jquery.com/jquery-1.7.2.min.js"></SCRIPT>
+    <SCRIPT src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></SCRIPT>
+    <LINK rel="stylesheet" href="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <SCRIPT src="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></SCRIPT>
+    <LINK href="http://code.jquery.com/ui/1.8.21/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <!-- about this page's property-->
+    <LINK rel="stylesheet" href="./subject.css"></LINK>
+    <SCRIPT src="../lib/socket.js"></SCRIPT>
+    <SCRIPT src="../lib/dto.js"></SCRIPT>
+    <SCRIPT src="./subject.js"></SCRIPT>
+    <script src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+</HEAD>
+<BODY>
+<DIV data-role="page" id="login">
+    <DIV data-role="content" class="content">
+
+    <DIV id="background_1">
+    <DIV id="title_container_left">
+    <DIV id="title_table_left"><DIV id="title_cell_left"></DIV></DIV>     
+    </DIV><!-- end of title_container_left -->
+     <div id="classes_list">
+      <div>nothing</div>
+      <div>nothing</div>
+      <div>nothing</div>
+     </div>
+     
+ 
+    
+    </DIV> <!-- end of background_1 -->
+
+    <DIV id="background_2">
+
+    <DIV id="title_container">
+    <DIV id="title_table"><DIV id="title_cell"></DIV></DIV> 
+    </DIV><!-- end of title container -->    
+    <DIV id="lectures_container">
+     <div id="lectures_title"></div>
+     <div id="lectures_list">
+      <div class='lecture'>수업을 시작할 반을 선택하세요</div>
+     </div>    
+     </DIV>       
+
+    </DIV><!-- end of background_2-->
+
+    <DIV id="materials" onClick="javascript:a();"></DIV>
+    </DIV><!-- end of content -->
+</DIV><!-- end of login page -->
+</BODY>
+<script>
+
+$(window).load(function() {
+connect();
+setting();
+
+});
+
+//$("#classes_list").append('<li><a href='+ "#" + ' id="a"  "> <img src="letterheader.png" >'+ this.textContent + '  </a> </li>');
+
+
+  
+
+</script>
+
+</HTML>

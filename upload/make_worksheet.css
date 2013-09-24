@@ -1,0 +1,15 @@
+#menuWrapper{
+position:fixed;
+top:20%;
+left:20%;
+z-index:300;
+width:500;
+background-image:url("./ppt_b.png");
+background-size:100% 100%;
+color:white;
+font-size:150%;
+border-style:double;
+border-color:black;
+font-family:"Times New Roman",Times,serif;
+}
+

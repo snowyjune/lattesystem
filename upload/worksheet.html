@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../js/socket.js"></script>
+	<script type="text/javascript" src="../js/dto.js"></script>
+	<script type="text/javascript" src="../js/script_func.js"></script>	
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body>
+	 <div id="wrapper">
+	 	 <script type="text/javascript" src="../js/inc/header.js"> </script>
+		 <div id="content_body">
+		 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
+		 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
+			 <div id="content">
+				<div id="inside">
+					<div id="upload_form" style="border:2px; border-style:solid;padding-left:10px;">
+					<form method="post" enctype="multipart/form-data" action="/upload">
+					    <script>
+					    	id = sessionStorage["id"];
+					    	document.write('<input type="hidden" name="id" id="id" value="'+id+'">');
+					    </script>
+					    <!-- user_num : <input type="text" name="user_num" id="user_num"> //선생님번호 -->
+					    <input type="hidden" name="type" id="type" value="PDF">
+					    파일 이름 : <input type="text" name="activity_name" id="activity_name"> <!-- 선생님 입력 -->
+					    <input type="file" name="uploadfile" accept="pdf"> <!-- 파일추가 --> 
+					    <input type="submit">
+					</form>
+					
+					</div><!--upload_form-->
+					* 파일 이름은 영문(A-Z, a-z) 및 숫자(0-9)만 입력 가능합니다. 띄어쓰기 및 특수문자는 사용이 불가능합니다. *
+
+				</div><!-- inside -->
+			</div><!-- content -->
+		 </div><!-- content_body -->
+	 </div><!-- wrapper -->
+</body>
+	<script>
+		$(window).load(function() {
+		connect();
+		connectAfterUpload();
+		sessionStorage.setItem("uploadType", "PDF");
+		sessionStorage.setItem("uploadState","NO");
+
+		});
+	</script>
+</html>

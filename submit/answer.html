@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../js/socket.js"></script>
+	<script type="text/javascript" src="../js/dto.js"></script>
+	<script type="text/javascript" src="../js/script_func.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/worksheet.css" />
+	
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body>
+	 <div id="wrapper">
+	 	 <script type="text/javascript" src="../js/inc/header.js"> </script>
+		 <div id="content_body">
+		 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
+		 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
+		 	<script type="text/javascript" src="../js/inc/sub_sub_menu.js"> </script>
+		 	<script type="text/javascript" src="../js/inc/sub_sub_sub_menu.js"> </script>
+
+			 <div id="content">
+				<div id="background">
+		        <script>
+		        var route = sessionStorage["worksheetRoutes"];
+			    var workSheetInfo = JSON.parse(sessionStorage["workSheetInfo"]);
+
+		        	    document.write('<img src="http://lattetime.cafe24.com:8888/'+route+'" id="ppt_screen" height=900 width=1200></img>');				
+		        	    console.log(workSheetInfo);
+		        	    for(var i=0;i<workSheetInfo.length;i++)
+						{
+							var height=workSheetInfo[i].height;
+							var width=workSheetInfo[i].width;
+							var x=workSheetInfo[i].startX;
+							var y=workSheetInfo[i].startY;
+							console.log(x+';'+y+';'+width+';'+height);
+							
+							var temp='<input type="text" id="draggable'+i+'" value="'+workSheetInfo[i].answer+'"></input>';
+							
+							$("#background").append(temp);
+							$( "#draggable"+i).css(
+							{'top': parseInt(y), 
+							'left' : parseInt(x), 
+							'position' : 'absolute', 
+							'height' :parseInt(height),
+							'width' :parseInt(width)
+							}
+							);
+						}
+		        </script>
+				</div><!-- inside -->
+			</div><!-- content -->
+		 </div><!-- content_body -->
+	 </div><!-- wrapper -->
+</body>
+<script>
+$(window).load(function() {
+	connect();
+});
+</script>
+</html>

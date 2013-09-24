@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />    <META name="apple-mobile-web-app-capable" content="yes" />
+    <META name="apple-mobile-web-app-status-bar-style" content="black" />
+    <SCRIPT src="http://code.jquery.com/jquery-1.7.2.min.js"></SCRIPT>
+    <SCRIPT src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></SCRIPT>
+    <LINK rel="stylesheet" href="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <SCRIPT src="https://s3.amazonaws.com/codiqa-cdn/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></SCRIPT>
+    <LINK href="http://code.jquery.com/ui/1.8.21/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <!-- about this page's property-->
+    <LINK rel="stylesheet" href="./login.css"></LINK>
+    <SCRIPT src="./login.js"></SCRIPT>
+    <SCRIPT src="../lib/socket.js"></SCRIPT>
+    <SCRIPT src="../lib/dto.js"></SCRIPT>
+    <script src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+</HEAD>
+<BODY>
+<DIV data-role="page" id="login">
+    <DIV data-role="content" class="content">
+    <DIV id="background">
+    <DIV id="emptyDiv"></DIV>
+    <DIV id="title">
+    <image src='./image/title.png' id="titleImage"></image>
+    </DIV><!-- end of title -->
+    <DIV id="login_container">
+    <DIV>
+    <DIV class="blockA"><image src='./image/id.png' class="image"></image></DIV>    
+    <DIV class="blockB"><INPUT type="text" id="student_id"></INPUT></DIV>
+    </DIV>
+
+    <DIV id="empty2Div"></DIV>
+
+    <DIV>
+    <DIV class="blockA"><image src='./image/password.png' class="image"></DIV>
+    <DIV class="blockB"><INPUT type="text" id="student_pw"></INPUT></DIV>
+    </DIV>
+
+<!--
+    <DIV>
+    <DIV class="blockA"><image src='./image/id.png' class="image"></image></DIV>
+    <DIV class="blockB"><INPUT type="text" id="student_id"></INPUT></DIV>
+    </DIV>
+
+    <DIV>
+    <DIV class="blockA"><image src='./image/password.png' class="image"></DIV>
+    <DIV class="blockB"><INPUT type="text" id="student_pw"></INPUT></DIV>
+    </DIV>
+
+    <DIV id="login_button">
+    <input type="button" onclick="login('teacher');" id="login_button" value="L O G I N"></input>
+    </DIV>
+    -->
+    </DIV><!-- end of login_container-->
+
+    <DIV id="login_button">
+    <IMG id="button" onClick="login('teacher');" SRC="./image/button.png"></IMG>
+    </DIV>
+    
+<!--
+    <input type="button" onclick="login('teacher');" value="L O G I N" id="button"></input>
+-->    
+    
+    </DIV><!-- end of background-->
+    </DIV><!-- end of content -->
+</DIV><!-- end of login page -->
+</BODY>
+<script>
+$(window).load(function() {
+connect();
+});
+
+
+ 
+
+</script>
+
+</HTML>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="http://lattetime.cafe24.com:8888/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../js/socket.js"></script>
+	<script type="text/javascript" src="../js/dto.js"></script>
+	<script type="text/javascript" src="../js/script_func.js"></script>	
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body>
+	 <div id="wrapper">
+	 	 <script type="text/javascript" src="../js/inc/header.js"> </script>
+		 <div id="content_body">
+		 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
+		 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
+			 <div id="content">
+				<div id="inside">
+					<div id="upload_form" style="border:2px; border-style:solid;padding-left:10px;">
+					<form method="post" enctype="multipart/form-data" action="/upload">
+					    <script>
+					    	id = sessionStorage["id"];
+					    	document.write('<input type="hidden" name="id" id="id" value="'+id+'">');
+					    </script>
+					    <!-- user_num : <input type="text" name="user_num" id="user_num"> //선생님번호 -->
+					    <input type="hidden" name="type" id="type" value="PPT">
+					    파일 이름 : <input type="text" name="activity_name" id="activity_name"> <!-- 선생님 입력 -->
+					    <input type="file" name="uploadfile"> <!-- 파일추가 --> 
+					    <input type="submit">
+					</form>
+					</div><!--upload_form-->
+					<br/>
+					<script>
+					var pptRoutes = JSON.parse(sessionStorage["pptRoutes"]);
+						var selRoute = pptRoutes[sessionStorage["selPptImg"]].route;
+						document.write('<div id="select_img"><img src="http://lattetime.cafe24.com:8888/'+selRoute+'" style="width:600px;height:450px;></div>');
+						document.write('<div id="all img">');
+						for(i = 0; i < pptRoutes.length; i++) { //activityNum, activityName 
+							document.write('<a href="javascript:selPptImg('+i+')"><img src="http://lattetime.cafe24.com:8888/'+pptRoutes[i].route+'" style="width:60px; 45px;">');
+						}
+						document.write('</div>');
+					</script>
+				</div><!-- inside -->
+			</div><!-- content -->
+		 </div><!-- content_body -->
+	 </div><!-- wrapper -->
+</body>
+	<script>
+		$(window).load(function() {
+		connect();
+		connectAfterUpload();
+		});
+	</script>
+</html>
