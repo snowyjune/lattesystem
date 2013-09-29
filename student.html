@@ -51,6 +51,7 @@
       //    socket = io.connect('http://latteio.grapeprince.c9.io');
 
  socket.on('data', function (res) {
+ 	    console.log(res);
         console.log("res received MessageNum :  "+res.MessageNum);
         console.log("res id : "+res.id);
         console.log("res success : "+res.success);
@@ -94,6 +95,7 @@
 				dto.groupId =  document.getElementById("send_groupId").value;
 				dto.activityNum =  document.getElementById("send_activityNum").value;
 				dto.progressInfo =  document.getElementById("send_progressInfo").value;
+				dto.cardNum =  document.getElementById("send_cardNum").value;
 				
 				 if( parseInt(dto.MessageNum, 10) == 217 ) {
 				  
@@ -141,6 +143,7 @@
         groupId:<input type="text" id="send_groupId"></input>
         activityNum:<input type="text" id="send_activityNum"></input>
           progressInfo:<input type="text" id="send_progressInfo"></input>
+            cardNum:<input type="text" id="send_cardNum"></input>
 		<button type="button" onclick="sendData();">전송</button>
 	</body>
 </html>

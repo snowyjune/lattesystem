@@ -34,6 +34,7 @@ function ID_SOCKET_PAIR() {
     var socket;
     var deviceType;
     var manType;
+    var roomname;
 
 }
 
@@ -112,6 +113,7 @@ exports.newClassState = function(){
 function ClassState() {
     var activityStart = 0;
     var activityType;
+  
 }
 
 exports.newPPTShare = function(){
@@ -133,6 +135,7 @@ exports.newGroupShare = function(){
 function GroupShare() {
     var groupList;
     var groupNum = 0;  
+    
 }
 
 exports.newGroupInfo = function(){
@@ -142,6 +145,7 @@ exports.newGroupInfo = function(){
 function GroupInfo() {
     var studentNum;
     var studentList;  
+    var wordList;
 }
 
 
@@ -177,6 +181,17 @@ function AnswerSpace(){
     var pageNum;
 }
 
+exports.newWordListInfo= function(){
+    return new WordListInfo();
+}
+
+function WordListInfo(){
+    var answerNum;
+    var string;
+    var flipped;
+}
+
+
 
 
 exports.TEACHER=1;
@@ -189,6 +204,7 @@ exports.PPT = "PPT";
 exports.WORKSHEET =  "WORKSHEET";
 exports.ATTENDANCE =  "ATTENDANCE";
 exports.GROUP =  "GROUP";
+exports.CARDGAME = "CARDGAME";
 
 
 exports.CLIENT_REQUEST_LOGIN = 101;
@@ -241,9 +257,14 @@ exports. SERVER_RESPONSE_PPTSHARE =		140;
 exports. CLIENT_REQUEST_PPTRETREIVE  =	141;
 exports. SERVER_RESPONSE_PPTRETREIVE = 142;
 
-
-
-
+exports. CLIENT_REQUEST_CARDTIMERSTART = 143;
+exports. SERVER_RESPONSE_CARDTIMERSTART = 144;
+exports. CLIENT_REQUEST_CARDTIMEREND = 145;
+exports. SERVER_RESPONSE_CARDTIMEREND = 146;
+exports. SERVER_REQUEST_CARDGROUPINFOCHANGE = 147;
+exports. CLIENT_RESPONSE_CARDGROUPINFOCHANGE = 148;
+exports. SERVER_REQUEST_CARDGAMEEND = 149;
+  
 
 
 ////////////////

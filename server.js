@@ -263,13 +263,13 @@ console.log("groupShare : %j" , groupShare );
 				console.log("Messeage num 100 ~ 199 : Teacher Mobile");
                    //커넥션을 배열로 유지
                connectionRetreive(received.id, socket, TeacherTools.MOBILE, TeacherTools.TEACHER );
-                teacher_controller.call(socket, received,  conn,  ID_SOC_PAIR, classState, pptShare, groupShare);
+                teacher_controller.call(socket, received,  conn,  ID_SOC_PAIR, classState, pptShare, groupShare, io);
 				break;
 			case 2:
 				console.log("Messeage num 200 ~ 299 : Student Mobile");
                    //커넥션을 배열로 유지
              connectionRetreive(received.id, socket, TeacherTools.MOBILE, TeacherTools.STUDENT );
-                student_controller.call(socket, received,  conn, ID_SOC_PAIR, classState, groupShare);
+                student_controller.call(socket, received,  conn, ID_SOC_PAIR, classState, groupShare, io);
 				break;
 			case 3:
                 console.log("Messeage num 300 ~ 399 : Web page");
@@ -304,28 +304,29 @@ function connectionRetreive(id, socket, deviceType, manType){
      
      var i;
      
+     tempIdConn =   TeacherTools.newIdSocekt();
+     tempIdConn.id = id;
+     tempIdConn.socket = socket;
+     tempIdConn.deviceType = deviceType;
+     tempIdConn.manType = manType;
+     
      for( i=0 ; i< ID_SOC_PAIR.length ; i++ ) {
         if( ID_SOC_PAIR[i].deviceType == deviceType ){
             if( ID_SOC_PAIR[i].manType == manType) {
                 if( ID_SOC_PAIR[i].id == id ) {
+                	if( ID_SOC_PAIR[i].roomname != null){
+                		tempIdConn.roomname = ID_SOC_PAIR[i].roomname;
+                	}
                     ID_SOC_PAIR.splice(i, 1);
                 }
             }
         } 
      }
      
-       tempIdConn =   TeacherTools.newIdSocekt();
-       tempIdConn.id = id;
-       tempIdConn.socket = socket;
-             tempIdConn.deviceType = deviceType;
-             tempIdConn.manType = manType;
-             ID_SOC_PAIR.push(tempIdConn);
+
+     ID_SOC_PAIR.push(tempIdConn);
     
-    for( i=0 ; i< ID_SOC_PAIR.length ; i++ ) {
-        console.log("i : " + i);
-        console.log("ID_SOC_PAIR[i].deviceType : " + ID_SOC_PAIR[i].deviceType );
-        console.log("ID_SOC_PAIR[i].manType : " + ID_SOC_PAIR[i].manType );
-        console.log("ID_SOC_PAIR[i].id : " + ID_SOC_PAIR[i].id );
-    }
+   // console.log( ID_SOC_PAIR);
+
 }
 

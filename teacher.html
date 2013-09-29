@@ -58,6 +58,7 @@ function AttendInfo() {
     //      socket = io.connect('http://latteio.grapeprince.c9.io');
 
  socket.on('data', function (res) {
+ 	console.log(res);
         console.log("res received messageNum :  "+res.MessageNum);
         console.log("res id : "+res.id);
         console.log("res success : "+res.success);
