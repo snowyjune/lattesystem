@@ -893,7 +893,7 @@ function ClientRequestCardgameList(received){
 	 res.MessageNum = WebpageTools.SERVER_RESPONSE_CARDGAMELIST;
 	 res.id = received.id;
 	 var list = [];
-	  var query = "select * from latte_activity
+	  var query = "select * from latte_activity"
 					+ " where activityNum in (select activityNum from latte_have"
 					+ " where teacherNum = (select teacherNum from latte_teacher "
 					+ " where teacherId = '"+ received.id + "' )"
