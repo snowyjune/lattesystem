@@ -87,6 +87,15 @@ exports.call = function(_socket, received, mysqlConnection, _ID_SOCKET_PAIR){
         case WebpageTools.CLIENT_REQUEST_WORKSHEETUPLOAD: //319
         	ClientRequestWorkSheetUpload(received);
             break;      
+        case WebpageTools.exports.CLIENT_REQUEST_CARDGAMELIST :
+        	ClientRequestCardgameList(received);
+        	break;
+       	case WebpageTools.CLIENT_REQUEST_CARDGAME_CREATE : 
+       		ClientRequestCardgameCreate(received);
+       		break;
+       	case WebpageTools.CLIENT_REQUEST_CARDGAMEINFO :
+       		ClientRequestCardgameInfo(received);
+       		break;
             
         default:
             break;
@@ -877,5 +886,112 @@ function ClientRequestWorksheetAnswerInfo(received){
      //send to client
      socket.emit('data', res) ;
  });
+}
+
+function ClientRequestCardgameList(received){
+	 var res = WebpageTools.newResponse();
+	 res.MessageNum = WebpageTools.SERVER_RESPONSE_CARDGAMELIST;
+	 res.id = received.id;
+	 var list = [];
+	  var query = "select * from latte_activity
+					+ " where activityNum in (select activityNum from latte_have"
+					+ " where teacherNum = (select teacherNum from latte_teacher "
+					+ " where teacherId = '"+ received.id + "' )"
+					+ " ) "
+					+ " and activityType = 'CARDGAME' ; ";
+	   
+	  mysqlConn.query(query, function (err, rows){
+	     if(err){
+	         console.log("mysql query err");
+	         console.log(err);
+	         res.success = 0;
+	     }
+	     
+	     else if( rows.length > 0 ) {
+	         
+	         for(var i = 0 ; i < rows.length ; i++){ 
+	          
+	             list.push(WebpageTools.newActivityInfo(
+	            		 rows[i].activityRoute
+	                     ,rows[i].activityName
+	                     ,rows[i].activityType
+	                     ,rows[i].activityNum));
+	         }         
+	         
+	         res.success = 1;
+	         res.activityList = list;
+	     }
+	     //send to client
+	     socket.emit('data', res) ;
+	 });
+}
+
+function ClientRequestCardgameCreate(received){
+	 var res = WebpageTools.newResponse();
+	 res.MessageNum = WebpageTools.CLIENT_REQUEST_CARDGAME_CREATE ;
+	 res.id = received.id;
+
+	  var query = "insert into latte_activity(activityType, activityTypeNum, activityName, activityRoute)"
+	  				+ "values('CARDGAME',3, '"+ received.activityName +"' ,'http://lattetime.cafe24.com:9998/activity_cardgame.png')" ;
+	   
+	  mysqlConn.query(query, function (err, rows){
+	     if(err){
+	         console.log("mysql query err");
+	         console.log(err);
+	         res.success = 0;
+	     }
+	     var activityNum = rows.insertId ;
+		 var have_query = "insert into latte_have(teacherNum,activityNum) "
+							+ " values( (select teacherNum from latte_teacher where teacherID='" + received.id + "'), "+ activityNum +");";
+		
+		mysqlConn.query(have_query, function (err, rows){
+	     	
+	     	var cardgame_query = "insert into latte_cardgame_word(activityNum, han, eng) values ?";
+	     	var values = [];
+	     	for(var i = 0 ; i < received.cardInfo.length ; i++){
+	     		values[i] = [received.activityNum,rows[i].han,rows[i].eng];
+	     	}
+	     	
+	     	mysqlConn.query(cardgame_query,[values] ,function (err, rows){
+		     	//send to client
+		     	res.success = 1;
+		     	socket.emit('data', res) ;
+	     	});	
+	 	});	
+	 });		
+}
+
+function ClientRequestCardgameInfo(received){
+	 var res = WebpageTools.newResponse();
+	 res.MessageNum = WebpageTools.CLIENT_REQUEST_CARDGAMEINFO ;
+	 res.id = received.id;
+	 var list = [];
+	  var query = "select * from latte_cardgame_word where activityNum = " + received.activityNum + ";";
+	   
+	  mysqlConn.query(query, function (err, rows){
+	     if(err){
+	         console.log("mysql query err");
+	         console.log(err);
+	         res.success = 0;
+	     }
+	     
+	     else if( rows.length > 0 ) {
+	         
+	         for(var i = 0 ; i < rows.length ; i++){ 
+	          
+	             var item = WebpageTools.newCardGameInfo();
+	             item.actNum = received.activityNum;
+	             item.eng = rows[i].eng;
+	             item.han = rows[i].han;
+	         	
+	         	 list.push(item);
+	         }         
+	         
+	         res.success = 1;
+	         res.cardInfo = list;
+	     }
+	     //send to client
+	     socket.emit('data', res) ;
+	 });	
 }
  
