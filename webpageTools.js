@@ -151,6 +151,14 @@ function ID_SOCKET_PAIR() {
 
 }
 
+function CardGameInfo(){
+	var actNum;
+	var eng;
+	var han;
+}
+exports.newCardGameInfo = function(){
+	return new CardGameInfo();
+}
 
 
 exports.TEACHER=1;
@@ -202,9 +210,15 @@ exports.SERVER_RESPONSE_WORKSHEETANSWERLIST =340;
 exports.CLIENT_REQUEST_CONNECTION = 341;
 exports.SERVER_RESPONSE_CONNECTION =342;
 
-
 exports.SERVER_REQUEST_UPLOADCOMPLETE = 337;
 exports.CLIENT_RESPONSE_UPLOADCOMPLETE =338;
+
+exports.CLIENT_REQUEST_CARDGAMELIST = 343;
+exports.SERVER_RESPONSE_CARDGAMELIST = 344;
+exports.CLIENT_REQUEST_CARDGAME_CREATE = 345;
+exports.SERVER_RESPONSE_CARDGAME_CREATE = 346;
+exports.CLIENT_REQUEST_CARDGAMEINFO = 347;
+exports.SERVER_RESPONSE_CARDGAMEINFO = 348;
 
 
 
