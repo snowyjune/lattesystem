@@ -110,6 +110,9 @@ $( "#background" ).droppable({
             {
                 sessionStorage.setItem('activityNumber',activityNumber);
                 location.href="../worksheet/worksheet.html";              
+            }else if(activityType=="CARDGAME"){
+                sessionStorage.setItem('activityNumber',activityNumber);
+                location.href="../card/start.html";              
             }
 /*
             if(ui.draggable.text()=="√‚ºÆ")

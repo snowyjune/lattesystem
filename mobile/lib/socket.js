@@ -44,6 +44,12 @@ var CLIENT_REQUEST_PPTSHARE_TEA=139;
 var SERVER_RESPONSE_PPTSHARE_TEA=140;
 var CLIENT_REQUEST_PPTRETREIVE_TEA=141;
 var SERVER_RESPONSE_PPTRETREIVE_TEA=142;
+var CLIENT_REQUEST_CARDTIMERSTART=143;
+var SERVER_RESPONSE_CARDTIMERSTART=144;
+var CLIENT_REQUEST_CARDTIMEREND=145;
+var SERVER_RESPONSE_CARDTIMEREND=146;
+var SERVER_REQUEST_CARDGROUPINFOCHANGE=147;
+var CLIENT_RESPONSE_CARDGROUPINFOCHANGE=148;
 ///////////////////////////////////////////////////////////////////
 var CLIENT_REQUEST_LOGIN_STU=201;
 var SERVER_RESPONSE_LOGIN_STU=202;
@@ -69,6 +75,16 @@ var CLIENT_REQUEST_ATTEND_STU=231;
 var SERVER_RESPONSE_ATTEND_STU=232;
 var CLIENT_REQUEST_CONNECTION_STU=233;
 var SERVER_RESPONSE_CONNECTION_STU=234;
+var SERVER_REQUEST_STARTCARDGAMEACTIVITY=235;
+var CLIENT_RESPONSE_STARTCARDGAMEACTIVITY=236;
+var SERVER_REQUEST_TURNSTART=237;
+var CLIENT_RESPONSE_TURNSTART=238;
+var CLIENT_REQUEST_CARDFLIP=239;
+var SERVER_RESPONSE_CARDFLIP=240;
+var SERVER_REQUEST_CARDFLIPPED=241;
+var CLIENT_RESPONSE_CARDFLIPPED=242;
+var SERVER_REQUEST_FLIPRESULT=243;
+var CLIENT_RESPONSE_FLIPRESULT=244;
 ////////////////////////////////////////////////////////////////////
 
 
@@ -220,8 +236,16 @@ function connect() {
         }
         else if(res.MessageNum==218)
         {
-        location.href="../learning/learning.html";                   
+            location.href="../learning/learning.html";                   
+        }else if(res.MessageNum==SERVER_RESPONSE_CARDTIMERSTART){
+//            location.href="../card/cardTeacher.html";              
+            countTime();
+        }else if(res.MessageNum==SERVER_REQUEST_STARTCARDGAMEACTIVITY){
+//            location.href="../card/cardTeacher.html";              
+            sessionStorage.setItem('wordInfo', JSON.stringify(res));
+            location.href="../card/card.html";                   
         }
+
 
         
 });//end of data on

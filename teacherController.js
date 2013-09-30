@@ -891,6 +891,9 @@ function clientRequestStartFixActivity(received) {
 	res.success = 1;
 	//蹂꾩씪 �놁쑝硫��붿껌���깃났�쒕떎.
 
+    console.log("received.activityType : " + received.activityType);
+    console.log("TeacherTools.CARDGAME : " + TeacherTools.CARDGAME);
+
 	if (received.activityType == TeacherTools.ATTENDANCE) {
 
 		var req = TeacherTools.newRequest();
@@ -932,6 +935,7 @@ function clientRequestStartFixActivity(received) {
 		 */
 	} else if (received.activityType == TeacherTools.CARDGAME) {
 
+        console.log("received.activityType : " + received.activityType);
 		//Load word information
 		var query = "SELECT han, eng FROM latte_cardgame_word" + " where activityNum = " + received.activityNum + ";";
 

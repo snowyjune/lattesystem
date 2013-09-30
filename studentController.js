@@ -116,7 +116,6 @@ function clientRequestCardFlip(received) {
 		req.MessageNum = StudentTools.SERVER_REQUEST_FLIPRESULT;
 		req.id = received.id;
 		req.flipSuccess = flipResult;
-
 		io.sockets. in (roomname).emit('data', req);
 
 		//send student my turn message(237)

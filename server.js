@@ -254,7 +254,8 @@ socket.on('data', function( data) {
 
     //JSON이용해서 Message Parse
 	received = data;
-
+	
+console.log("ID_SOC_PAIR" , ID_SOC_PAIR );
 console.log("groupShare : %j" , groupShare );
 
     //메세지에 따라 처리
