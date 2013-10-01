@@ -7,6 +7,19 @@
 	left:0px;
 }
 
+.groupHeader{
+
+	height:30px;
+	width:100%;
+	background-color: yellow;
+	text-align: center;
+
+}
+
+.leftProblem{
+	text-align: center;	
+}
+
 #groupBoard .group{
 	height:100px;
 	width:100px;

@@ -244,6 +244,16 @@ function connect() {
 //            location.href="../card/cardTeacher.html";              
             sessionStorage.setItem('wordInfo', JSON.stringify(res));
             location.href="../card/card.html";                   
+        }else if(res.MessageNum==SERVER_REQUEST_FLIPRESULT){
+
+            applyResult(res);
+
+        }else if(res.MessageNum==SERVER_REQUEST_TURNSTART){
+            removeUnable();
+        }else if(res.MessageNum==SERVER_REQUEST_CARDFLIPPED){
+            flipCard(res);
+        }else if(res.MessageNum==SERVER_REQUEST_CARDGROUPINFOCHANGE){
+            updateLeftProblems(res);
         }
 
 

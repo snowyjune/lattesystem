@@ -111,6 +111,8 @@ function clientRequestCardFlip(received) {
 			wordList[groupShare.groupList[groupNum].flippedSecond].flipped = 0;
 		}
 
+        console.log('243 now send '+ roomname );
+
 		//send to group people flipResult(243)
 		req = TeacherTools.newRequest();
 		req.MessageNum = StudentTools.SERVER_REQUEST_FLIPRESULT;
@@ -118,6 +120,9 @@ function clientRequestCardFlip(received) {
 		req.flipSuccess = flipResult;
 		io.sockets. in (roomname).emit('data', req);
 
+        console.log('rooms :  ',io.sockets.clients(roomname));
+        console.log('req why not send',  req );
+        
 		//send student my turn message(237)
 		req = TeacherTools.newRequest();
 		req.MessageNum = StudentTools.SERVER_REQUEST_TURNSTART;

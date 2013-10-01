@@ -6,7 +6,9 @@ function setting(){
 	var groupList=[1,2,3,4,5,6];
 
 	for(var i=0;i<groupList.length;i++){
-		var text='<div class="group" id="group'+i+'">'+groupList[i]+'</div>';
+//		var text='<div class="group" id="group'+i+'">'+groupList[i]+'</div>';
+		var text='<div class="group" id="group'+i+'"><div class="groupHeader">Group '+groupList[i]+'</div><div id=number'+i+' class="leftProblem">10</div></div>';
+
 	   $('#groupBoard').append($(text));
 	}//end of for
 
@@ -75,7 +77,15 @@ function letServerKnowTime(){
 }
 
 
+function updateLeftProblems(res){
+	var list=res.remainNumList;
+	console.log("@@@");
+	console.log(list);
 
+	for(var i=0;i<list.length;i++){
+		document.getElementById('number'+i).innerHTML=list[i];
+	}
+}
 
 
 

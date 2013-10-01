@@ -1,6 +1,10 @@
 
 var firstChoice=null;
 var secondChoice=null;
+var step=0;
+var flipCount=0;
+var tempArrayForCard=[];
+var answerList=[];
 
 function setting(){
 
@@ -19,19 +23,40 @@ for(var i=0;i<wordList.length;i++){
 }
 
 //makeUnable();
+var query=new DTO();
+query.MessageNum=CLIENT_REQUEST_CONNECTION_STU;
+var myId = sessionStorage.getItem('id');
+query.id=myId;
+
+socket.emit('data', query);
+makeUnable();
 }//end of setting
 
 $(".flip").live("click", function(){
+	if(flipCount<=0){
+		return 0;
+	}
+
+
 
 	 var number=$(this).context.id;
 
-	 if(firstChoice==null){
-	 	firstChoce=number;
+
+
+	 if(step==0){
+	 	firstChoice=number;
+	 	step++;
+	 	flipCount--;
+	 	tempArrayForCard.push(number);
 	 }else{
 	 	secondChoice=number;
+	 	step=0;
+	 	flipCount--;
+	 	makeUnable();
+	 	tempArrayForCard.push(number);
 	 }
-	 $(this).find('.card').removeClass('flipped');
 
+	 $(this).find('.card').removeClass('flipped');
 
 	var query={};
 	query.MessageNum=CLIENT_REQUEST_CARDFLIP;
@@ -41,17 +66,25 @@ $(".flip").live("click", function(){
 	socket.emit('data', query);
 	console.log(query);
 
-//	 $(this).find('.card').addClass('flipped');
-//	 console.log($(this));
-//	 var number=$(this).data('data-number');
-
-//	 console.log(number);
-//firstChoice=
-//	 $(this).find('.card').addClass('flipped').mouseleave(function(){
-  //          $(this).removeClass('flipped');
-    //    });
-        return false;
+    return false;
 });
+
+function flipCard(res){
+
+	if(flipCount>0){
+		return 0;
+	}
+
+
+	var number=parseInt(res.cardNum);
+
+
+
+
+	$('#'+number).find('.card').removeClass('flipped');
+	tempArrayForCard.push(number);
+
+}
 
 
 
@@ -61,4 +94,50 @@ $(".flip").live("click", function(){
 
 function makeUnable(){
 	$('#cardGamePannel').addClass('unable');
+	step=0;
+	flipCount=0;
+}
+
+function removeUnable(){
+	$('#cardGamePannel').removeClass('unable');	
+	flipCount=2;
+}
+
+
+function applyResult(res){
+
+	if(res.flipSuccess==1){
+//		answerList.push(firstChoice);
+//		answerList.push(secondChoice);
+
+		firstChoice=null;
+		secondChoice=null;
+		tempArrayForCard.pop();
+		tempArrayForCard.pop();
+		tempArrayForCard=[];
+
+	}else{
+    	setTimeout(reFlipCard,800);
+	}//end of else
+
+}//end of applyResult
+
+function reFlipCard(){
+	console.log("first : "+firstChoice);
+	console.log("second : "+secondChoice);
+
+/*
+	if(flipCount>0){
+		$('#'+firstChoice).find('.card').addClass('flipped');
+		$('#'+secondChoice).find('.card').addClass('flipped');
+		firstChoice=null;
+		secondChoice=null;
+	}
+*/
+	for(var i=0;i<tempArrayForCard.length;i++){
+		$('#'+tempArrayForCard[i]).find('.card').addClass('flipped');		
+	}
+	tempArrayForCard.pop();
+	tempArrayForCard.pop();
+	tempArrayForCard=[];
 }

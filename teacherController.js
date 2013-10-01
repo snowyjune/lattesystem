@@ -159,9 +159,10 @@ function clientRequestCardTimerStart(received) {
 
 	for (var i = 0; i < groupShare.groupList.length; i++) {
 		var studentId = groupShare.groupList[i].studentList[0];
-		
+		console.log('for groupList length');
 		for (var j = 0; j < ID_SOCKET_PAIR.length; j++) {
 			if (ID_SOCKET_PAIR[j].id == studentId) {
+				console.log('data emited to ' + studentId);
 				ID_SOCKET_PAIR[j].socket.emit('data', req);
 			}
 		}
@@ -891,8 +892,6 @@ function clientRequestStartFixActivity(received) {
 	res.success = 1;
 	//蹂꾩씪 �놁쑝硫��붿껌���깃났�쒕떎.
 
-    console.log("received.activityType : " + received.activityType);
-    console.log("TeacherTools.CARDGAME : " + TeacherTools.CARDGAME);
 
 	if (received.activityType == TeacherTools.ATTENDANCE) {
 

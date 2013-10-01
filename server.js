@@ -315,8 +315,9 @@ function connectionRetreive(id, socket, deviceType, manType){
         if( ID_SOC_PAIR[i].deviceType == deviceType ){
             if( ID_SOC_PAIR[i].manType == manType) {
                 if( ID_SOC_PAIR[i].id == id ) {
-                	if( ID_SOC_PAIR[i].roomname != null){
+                	if( ID_SOC_PAIR[i].roomname != null){								
                 		tempIdConn.roomname = ID_SOC_PAIR[i].roomname;
+                		ID_SOC_PAIR[i].socket.join('' + ID_SOC_PAIR[i].roomname);
                 	}
                     ID_SOC_PAIR.splice(i, 1);
                 }
