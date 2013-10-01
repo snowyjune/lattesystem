@@ -4,10 +4,12 @@ var second;
 
 function setting(){
 	var groupList=[1,2,3,4,5,6];
+	var groupNumber=parseInt(sessionStorage.getItem('groupNumber'));
 
-	for(var i=0;i<groupList.length;i++){
+
+	for(var i=0;i<groupNumber;i++){
 //		var text='<div class="group" id="group'+i+'">'+groupList[i]+'</div>';
-		var text='<div class="group" id="group'+i+'"><div class="groupHeader">Group '+groupList[i]+'</div><div id=number'+i+' class="leftProblem">10</div></div>';
+		var text='<div class="group" id="group'+i+'"><div class="groupHeader">Group '+i+'</div><div id=number'+i+' class="leftProblem">10</div></div>';
 
 	   $('#groupBoard').append($(text));
 	}//end of for

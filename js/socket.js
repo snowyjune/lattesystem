@@ -84,7 +84,7 @@ function connect() {
 		        	
 	        	}
 	        }
-	        else if(res.MessageNum == 314) { //카드게임 list 가져오기  /////////////번호 바꾸기
+	        else if(res.MessageNum == 344) { //카드게임 list 가져오기  /////////////번호 바꾸기
 	        	var arr = new Array();
 	        	if(typeof res.cardgameList != "undefined") {
 		        	for(i = 0; i < res.cardgameList.length;i++) {

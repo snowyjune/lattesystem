@@ -54,6 +54,7 @@ for(i=0;i<res.groupList.length;i++)
   }
 }
 
+sessionStorage.setItem("groupNumber",res.groupList.length);
 
 for(i=0;i<res.groupList.length;i++)
 {

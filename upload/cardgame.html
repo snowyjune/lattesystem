@@ -18,6 +18,10 @@
 		 	<script type="text/javascript" src="../js/inc/menu.js"> </script>
 		 	<script type="text/javascript" src="../js/inc/sub_menu.js"> </script>
 			 <div id="content">
+			    <div id="cardGameNameWrapper">
+			    	카드게임 이름 : <input type="text" id="cardGameName"></input>
+			    </div>
+
 				<div id="inside">
 					<div id="upload_form" style="border:2px; border-style:solid;padding-left:10px;">
 					<form method="post" enctype="multipart/form-data" action="/upload" onSubmit="return checkform()">
@@ -25,6 +29,14 @@
 					    	id = sessionStorage["id"];
 					    	document.write('<input type="hidden" name="id" id="id" value="'+id+'">');
 					    </script>
+					    <style>
+					    #cardGameNameWrapper{
+					    	height: 50px;
+					    	width: 500px;
+					    	margin-left: 10px;
+					    	margin-top: 10px;
+					    }
+					    </style>
 					    <input type="hidden" name="type" id="type" value="CARD_GAME">
 						    <table id="word_table">
 							    <tr>
@@ -32,12 +44,12 @@
 								    <td>뜻</td>
 							    </tr>
 							    <tr>
-								    <td><input type="text" name="eng_word" class="eng_word"></td>
-								    <td><input type="text" name="kor_word" class="kor_word"></td>
+								    <td><input type="text" id="eng0" name="eng_word" class="eng_word"></td>
+								    <td><input type="text" id="kor0" name="kor_word" class="kor_word"></td>
 							    </tr>
 						    </table>
-						    <input type="button" value="+" onclick="javascript:addTableRow();">
-					    <input type="submit">
+						    <input type="button" value="+" onClick="javascript:addTableRow();">
+					    <input type="button" value="제출" onClick="sendCardGame();">
 					</form>
 					</div><!--upload_form-->
 				</div><!-- inside -->
@@ -46,6 +58,7 @@
 	 </div><!-- wrapper -->
 </body>
 	<script>
+		number=1;
 		$(window).load(function() {
 		connect();
 		connectAfterUpload();
@@ -58,18 +71,47 @@
 		function addTableRow(){
 			var table = $('#word_table tr');
 			var rowlen = table.length;
-			table.eq(rowlen-1).after('<tr><td><input type="text" name="eng_word" class="eng_word"></td><td><input type="text" name="kor_word" class="kor_word"></td></tr>');
+			console.log("rowlen : "+rowlen);
+			table.eq(rowlen-1).after('<tr><td><input type="text" id="eng'+number+'" name="eng_word" class="eng_word"></td><td><input type="text" id="kor'+number+'" name="kor_word" class="kor_word"></td></tr>');
+			console.log("here : "+number);
+			number++;
+		}
 
+		function sendCardGame(){
+
+
+			var cardList=[];
+			for(var i=0;i<number;i++){
+				var dummy={};
+				var eng=document.getElementById("eng"+i).value;
+				var kor=document.getElementById("kor"+i).value;
+				dummy.actNum=null;
+				dummy.eng=eng;
+				dummy.han=kor;
+				cardList.push(dummy);
+				console.log(dummy);
+			}//end of loop for i
+			console.log(cardList);
+
+			var query=new DTO();
+			query.MessageNum=345;
+			var myId = sessionStorage["id"];
+			query.id=myId;
+			query.activityName="food";
+			query.cardInfo=cardList;
+			socket.emit('data', query);
 		}
 		
 		function checkform() {
-			if(){
+	/*
+			if(true){
 				return false;
-			} esle if() {
+			} esle if(true) {
 				return false;
 			}
 			
 			return true;
+*/
 		}
 		
 		

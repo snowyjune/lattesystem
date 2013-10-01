@@ -87,7 +87,8 @@ exports.call = function(_socket, received, mysqlConnection, _ID_SOCKET_PAIR){
         case WebpageTools.CLIENT_REQUEST_WORKSHEETUPLOAD: //319
         	ClientRequestWorkSheetUpload(received);
             break;      
-        case WebpageTools.exports.CLIENT_REQUEST_CARDGAMELIST :
+            
+        case WebpageTools.CLIENT_REQUEST_CARDGAMELIST :
         	ClientRequestCardgameList(received);
         	break;
        	case WebpageTools.CLIENT_REQUEST_CARDGAME_CREATE : 
@@ -928,7 +929,7 @@ function ClientRequestCardgameList(received){
 
 function ClientRequestCardgameCreate(received){
 	 var res = WebpageTools.newResponse();
-	 res.MessageNum = WebpageTools.CLIENT_REQUEST_CARDGAME_CREATE ;
+	 res.MessageNum = WebpageTools.SERVER_RESPONSE_CARDGAME_CREATE ;
 	 res.id = received.id;
 
 	  var query = "insert into latte_activity(activityType, activityTypeNum, activityName, activityRoute)"
@@ -941,6 +942,8 @@ function ClientRequestCardgameCreate(received){
 	         res.success = 0;
 	     }
 	     var activityNum = rows.insertId ;
+	     console.log('insertId' + activityNum);
+	     
 		 var have_query = "insert into latte_have(teacherNum,activityNum) "
 							+ " values( (select teacherNum from latte_teacher where teacherID='" + received.id + "'), "+ activityNum +");";
 		
@@ -949,10 +952,12 @@ function ClientRequestCardgameCreate(received){
 	     	var cardgame_query = "insert into latte_cardgame_word(activityNum, han, eng) values ?";
 	     	var values = [];
 	     	for(var i = 0 ; i < received.cardInfo.length ; i++){
-	     		values[i] = [received.activityNum,rows[i].han,rows[i].eng];
+	     		values[i] = [activityNum, received.cardInfo[i].han, received.cardInfo[i].eng];
 	     	}
 	     	
-	     	mysqlConn.query(cardgame_query,[values] ,function (err, rows){
+	     	console.log( 'insert %j', values);
+	     	
+	     	mysqlConn.query(cardgame_query, values ,function (err, rows){
 		     	//send to client
 		     	res.success = 1;
 		     	socket.emit('data', res) ;

@@ -164,7 +164,7 @@ function getPptList() {
 function getCardgameList() {
 	var query = new DTO();
 	sessionStorage.setItem("selMenu", "card");
-	query.MessageNum = 313;//////////////////////////////메세지 넘버 교체
+	query.MessageNum = 343;//////////////////////////////메세지 넘버 교체
 	query.id = sessionStorage["id"];
 	socket.emit('data', query);
 	
