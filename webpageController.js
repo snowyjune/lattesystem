@@ -911,12 +911,10 @@ function ClientRequestCardgameList(received){
 	     else if( rows.length > 0 ) {
 	         
 	         for(var i = 0 ; i < rows.length ; i++){ 
-	          
-	             list.push(WebpageTools.newActivityInfo(
-	            		 rows[i].activityRoute
-	                     ,rows[i].activityName
-	                     ,rows[i].activityType
-	                     ,rows[i].activityNum));
+                 var temp=WebpageTools.newActivityListInfo();
+                 temp.activityName=rows[i].activityName;
+                 temp.activityNum=rows[i].activityNum;
+	             list.push(temp);
 	         }         
 	         
 	         res.success = 1;
@@ -957,7 +955,7 @@ function ClientRequestCardgameCreate(received){
 	     	
 	     	console.log( 'insert %j', values);
 	     	
-	     	mysqlConn.query(cardgame_query, values ,function (err, rows){
+	     	mysqlConn.query(cardgame_query, [values] ,function (err, rows){
 		     	//send to client
 		     	res.success = 1;
 		     	socket.emit('data', res) ;
@@ -968,7 +966,7 @@ function ClientRequestCardgameCreate(received){
 
 function ClientRequestCardgameInfo(received){
 	 var res = WebpageTools.newResponse();
-	 res.MessageNum = WebpageTools.CLIENT_REQUEST_CARDGAMEINFO ;
+	 res.MessageNum = WebpageTools.SERVER_RESPONSE_CARDGAMEINFO ;
 	 res.id = received.id;
 	 var list = [];
 	  var query = "select * from latte_cardgame_word where activityNum = " + received.activityNum + ";";
@@ -990,12 +988,15 @@ function ClientRequestCardgameInfo(received){
 	             item.han = rows[i].han;
 	         	
 	         	 list.push(item);
-	         }         
+	         }
+	         
+	         console.log( 'rows : %j', rows);         
 	         
 	         res.success = 1;
 	         res.cardInfo = list;
 	     }
 	     //send to client
+	     
 	     socket.emit('data', res) ;
 	 });	
 }

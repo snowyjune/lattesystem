@@ -7,17 +7,17 @@ function connect() {
 	
 	socket.on('data', function (res) {
 	        
-	        console.log(res.MessageNum);
-	        if(res.MessageNum == 302) {//·Î±×ÀÎ
+	        console.log(res);
+	        if(res.MessageNum == 302) {//ï¿½Î±ï¿½ï¿½ï¿½
 		        if(res.is_success == 1)
 		        {
-			        alert("¹Ý°©½À´Ï´Ù "+res.id+"¼±»ý´Ô");
+			        alert("ï¿½Ý°ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ "+res.id+"ï¿½ï¿½ï¿½ï¿½ï¿½");
 			        sessionStorage.setItem('id', res.id);
 			        location.href = "./main/main.html";
 		        } 
 		        else 
 		        {
-			    	alert("·Î±×ÀÎ Á¤º¸¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä");    
+			    	alert("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");    
 		        }
 	        } /* end of 302 */
 	        else if(res.MessageNum == 334) {
@@ -33,18 +33,18 @@ function connect() {
 	        	location.href = "../submit/studentList.html";
 	            
 	        }
-	        else if(res.MessageNum == 304) { //·Î±×¾Æ¿ô
+	        else if(res.MessageNum == 304) { //ï¿½Î±×¾Æ¿ï¿½
 		        if(res.is_success == 1)
 		        {
-			        alert("·Î±×¾Æ¿ô µÇ¼Ì½À´Ï´Ù.");
+			        alert("ï¿½Î±×¾Æ¿ï¿½ ï¿½Ç¼Ì½ï¿½ï¿½Ï´ï¿½.");
 			        location.href = "../index.html";
 		        }
 		        else 
 		        {
-			        alert("·Î±×¾Æ¿ô ½ÇÆÐ¶ó´Ï ÈçÄ¡ ¾ÊÀºÀÏÀÌ³×¿ä. ÁÁÀºÇÏ·ç µÇ½Ã°í ´Ù½ÃÇÑ¹ø ·Î±×¾Æ¿ô ´­·¯ÁÖ¼¼¿ä.");
+			        alert("ï¿½Î±×¾Æ¿ï¿½ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³×¿ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½Ç½Ã°ï¿½ ï¿½Ù½ï¿½ï¿½Ñ¹ï¿½ ï¿½Î±×¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 		        }
 	        }
-	        else if(res.MessageNum == 306) { //°ú¸ñ Á¤º¸ °¡Á®¿À±â
+	        else if(res.MessageNum == 306) { //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        	var arr = new Array();
 	        	if(typeof res.subjectList != "undefined") {
 		        	for(i = 0; i < res.subjectList.length;i++) {
@@ -61,7 +61,7 @@ function connect() {
 		        	location.href = "../submit/mylecture.html";
 	        	}
 	        }
-	        else if(res.MessageNum == 314) { //PPT LIST °¡Á®¿À±â
+	        else if(res.MessageNum == 314) { //PPT LIST ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        	var arr = new Array();
 	        	if(typeof res.pptList != "undefined") {
 		        	for(i = 0; i < res.pptList.length;i++) {
@@ -84,20 +84,26 @@ function connect() {
 		        	
 	        	}
 	        }
-	        else if(res.MessageNum == 344) { //Ä«µå°ÔÀÓ list °¡Á®¿À±â  /////////////¹øÈ£ ¹Ù²Ù±â
+	        else if(res.MessageNum == 344) { //Ä«ï¿½ï¿½ï¿½ï¿½ï¿½ list ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  /////////////ï¿½ï¿½È£ ï¿½Ù²Ù±ï¿½
+
 	        	var arr = new Array();
-	        	if(typeof res.cardgameList != "undefined") {
-		        	for(i = 0; i < res.cardgameList.length;i++) {
+
+	        	if(typeof res.activityList != "undefined") {
+		        	for(i = 0; i < res.activityList.length;i++) {
 	        			arr[i] = new activityDTO();
-		        		arr[i].activityNum = res.cardgameList[i].activityNum;
-		        		arr[i].activityName = res.cardgameList[i].activityName;
+		        		arr[i].activityNum = res.activityList[i].activityNum;
+		        		console.log(res.activityList[i]);
+		        		arr[i].activityName = res.activityList[i].activityName;
 		        	}
 	        	}
+
+				console.log(arr);
+				alert("@");
 	        	sessionStorage["subjectList"] = JSON.stringify(arr);
 	        	location.href = "../upload/cardgame.html";
 		        
 	        }
-	        else if(res.MessageNum == 318) { //WORKSHEET LIST °¡Á®¿À±â
+	        else if(res.MessageNum == 318) { //WORKSHEET LIST ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        	var arr = new Array();
   	        	if(typeof res.workSheetList != "undefined") {
 		        	for(i = 0; i < res.workSheetList.length;i++) {
@@ -111,7 +117,7 @@ function connect() {
 	        	console.log(arr);
 	        	location.href = "../upload/worksheet.html";
 	        }
-	         else if(res.MessageNum == 308) { //¼ö¾÷ Á¤º¸ °¡Á®¿À±â
+	         else if(res.MessageNum == 308) { //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        	var arr = new Array();
   	        	if(typeof res.lectureList != "undefined") {
 	
@@ -127,7 +133,7 @@ function connect() {
 	        	location.href = "../lecture/lecture_list.html";
 		        
 	        }
-	        else if(res.MessageNum == 310) { //¼ö¾÷ Á¤º¸ ¹× °­ÀÇ Á¤º¸ °¡Á®¿À±â(¼ö¾÷Á¤º¸ °¡Á®¿À±â ¼öÁ¤ !)
+	        else if(res.MessageNum == 310) { //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ !)
 	        	var ppt = new Array();
 	        	var worksheet = new Array();
 	        	j = 0;
@@ -151,20 +157,20 @@ function connect() {
 	        	sessionStorage["selPptList"] = JSON.stringify(ppt);
 	        	sessionStorage["selWorksheetList"] = JSON.stringify(worksheet);
 	       
-	        	getAllActivityList(); // ¸ðµç ¿¢Æ¼ºñÆ¼ ¸®½ºÆ® ¹Þ¾Æ¿À±â ! 
+	        	getAllActivityList(); // ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ ! 
 		        
 	        }
-	        else if(res.MessageNum == 322) {//Ãâ¼®Á¤º¸ 0°á¼® 1Ãâ¼® 2Áö°¢ 
+	        else if(res.MessageNum == 322) {//ï¿½â¼®ï¿½ï¿½ï¿½ï¿½ 0ï¿½á¼® 1ï¿½â¼® 2ï¿½ï¿½ï¿½ï¿½ 
 	        	var attendInfo = new Array();
 	        
-	        	//¼ö¾÷°¹¼ö ÀúÀåÇÏ·Á°ø !!! 
+	        	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ !!! 
 	        	lecCnt = 1;
-	        	state = 1; //È½¼ö¸¦ »ø°ÍÀÎÁö ¸»°ÍÀÎÁö.
+	        	state = 1; //È½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	        	if(typeof res.attendInfo != "undefined") {
 	
 		        	preLec = res.attendInfo[0].lectureNum;
 		        	
-		        	for (i = 0; i < res.attendInfo.length; i++) {//2Â÷¿ø¹è¿­?!
+		        	for (i = 0; i < res.attendInfo.length; i++) {//2ï¿½ï¿½ï¿½ï¿½è¿­?!
 			        	attendInfo[i] = new AttendInfo();
 			        	attendInfo[i].studentId = res.attendInfo[i].studentId;
 			        	attendInfo[i].studentNum = res.attendInfo[i].studentNum;
@@ -191,7 +197,7 @@ function connect() {
 	        	location.href = "../attend/attend.html";
 		        
 	        }
-	        else if(res.MessageNum == 328) { //¸ðµç¿¢Æ¼ºñÆ¼¸®½ºÆ® °¡Á®¿À±â
+	        else if(res.MessageNum == 328) { //ï¿½ï¿½ç¿¢Æ¼ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        	var ppt = new Array();
 	        	var worksheet = new Array();
 	        	j = 0;
@@ -270,13 +276,13 @@ function connect() {
 		        }
 
 	        }
-	        else if(res.MessageNum == 324) {  // »õ ¼ö¾÷ ±¸¼ºÇÏ±â ¼ö¾÷Á¤º¸ »ý¼ºÈÄ ÆäÀÌÁö¸¦ ¸®·ÎµåÇÑ´Ù.
+	        else if(res.MessageNum == 324) {  // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½Ñ´ï¿½.
 		        getLectureList(sessionStorage["selSubject"]);
 	        }
-	        else if(res.MessageNum == 342) { //°Á ¾÷·Îµå ÈÄ Àç¿¬°á 
+	        else if(res.MessageNum == 342) { //ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ç¿¬ï¿½ï¿½ 
 		        
 	        }
-	        else if(res.MessageNum == 337) {//¾÷·Îµå ¿Ï·á 
+	        else if(res.MessageNum == 337) {//ï¿½ï¿½ï¿½Îµï¿½ ï¿½Ï·ï¿½ 
 		    	sessionStorage.setItem("activityNum", res.activityNum);
 		    	if(sessionStorage["uploadType"] == "PPT") {
 			    	getPptInfo2();
@@ -286,12 +292,12 @@ function connect() {
 		    	}
 	        }
 	        else if(res.MessageNum == 312) {
-		        alert("Ãß°¡¼º°ø");
+		        alert("ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½");
 	        }
 	        else if(res.MessageNum == 326) {
-		        alert("»èÁ¦¼º°ø");
+		        alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	        }
-	        else if(res.MessageNum == 320) { //¿öÅ©½ÃÆ® ¾÷·Îµå ¼º°ø 
+	        else if(res.MessageNum == 320) { //ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		        sessionStorage.setItem("ws_mode", "complete");
 				getWorksheetInfo2();			    
 		        

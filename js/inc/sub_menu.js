@@ -34,5 +34,17 @@ else if (sessionStorage["selMenu"] == "submit") {
 	}
 	
 }
+else if(sessionStorage["selMenu"] == "card"){
+
+	document.write('<img src="../img/ppt_list.png" />');
+	var subjectList = JSON.parse(sessionStorage["subjectList"]);
+
+
+
+	console.log(subjectList);
+	for(i = 0; i < subjectList.length; i++) {
+		document.write('<div onclick="getPptInfo('+subjectList[i].activityNum+');">'+ subjectList[i].activityName +'</div><br/>');
+	}
+}
 document.write('</div>');
 document.write('</div>');
