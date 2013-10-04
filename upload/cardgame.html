@@ -77,6 +77,16 @@
 			number++;
 		}
 
+		function addCardItems(res){
+			$('#word_table tr').empty();
+			var tempList=res.cardInfo;
+			for(var i=0;i<tempList.length;i++){
+				addTableRow();
+				document.getElementById('eng'+(number-1)).value=tempList[i].eng;
+				document.getElementById('kor'+(number-1)).value=tempList[i].han;
+			}
+		}//end of addCardItems
+
 		function sendCardGame(){
 
 
@@ -97,7 +107,7 @@
 			query.MessageNum=345;
 			var myId = sessionStorage["id"];
 			query.id=myId;
-			query.activityName="food";
+			query.activityName=document.getElementById('cardGameName').value;
 			query.cardInfo=cardList;
 			socket.emit('data', query);
 		}

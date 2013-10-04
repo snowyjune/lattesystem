@@ -117,6 +117,34 @@
 								</div>
 							</div>		<!-- activity List -->
 						</div><!--added_object"-->
+
+
+						<div id="class_object" style="width:300px;background-color:#FFFFFF;float:left;border:3px;border-style:solid;">
+							<div class="font_style" style="border-bottom:2px;border-bottom-style:solid;padding:5px 10px;">CARD LIST</div>
+							<div id="activity_list" class="activity_list">
+								<div id="ppt_list" style="color:black;">
+									<script>
+										var cardList = JSON.parse(sessionStorage["cardList"]);
+				                    	var selCardList = JSON.parse(sessionStorage["selCardList"]);				                  
+										for(i = 0; i < cardList.length; i++) { //activityNum, activityName 
+											checked = '';
+											for( j = 0; j < selCardList.length ; j++) {
+												if (cardList[i].actNum == selCardList[j].actNum) {
+													checked = 'checked = "checked"';
+													break;
+												}
+											}
+											document.write('<input type="checkbox" name="ppt_list" value="'+ cardList[i].actNum + '" onclick="pptListChecked(this);" '+ checked +'/><span>'+cardList[i].actName +'</span></br>');
+										}
+										if(cardList.length == 0) {
+											document.write("PPT 목록이 없습니다.");
+										}
+									</script>
+								</div>
+							</div>		<!-- activity List -->
+						</div>
+
+
 					</div><!-- inside -->
 				</div><!-- content -->
 			</div>	<!-- content_body -->

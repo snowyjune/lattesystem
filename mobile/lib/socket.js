@@ -85,6 +85,7 @@ var SERVER_REQUEST_CARDFLIPPED=241;
 var CLIENT_RESPONSE_CARDFLIPPED=242;
 var SERVER_REQUEST_FLIPRESULT=243;
 var CLIENT_RESPONSE_FLIPRESULT=244;
+var SERVER_REQUEST_CARDGAMEEND=245;
 ////////////////////////////////////////////////////////////////////
 
 
@@ -254,6 +255,8 @@ function connect() {
             flipCard(res);
         }else if(res.MessageNum==SERVER_REQUEST_CARDGROUPINFOCHANGE){
             updateLeftProblems(res);
+        }else if(res.MessageNum==SERVER_REQUEST_CARDGAMEEND){
+            location.href="../learning/learning.html";           
         }
 
 

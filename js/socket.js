@@ -11,13 +11,13 @@ function connect() {
 	        if(res.MessageNum == 302) {//�α���
 		        if(res.is_success == 1)
 		        {
-			        alert("�ݰ����ϴ� "+res.id+"�����");
+//			        alert("�ݰ����ϴ� "+res.id+"�����");
 			        sessionStorage.setItem('id', res.id);
 			        location.href = "./main/main.html";
 		        } 
 		        else 
 		        {
-			    	alert("�α��� ������ �ٽ� Ȯ���ϼ���");    
+//			    	alert("�α��� ������ �ٽ� Ȯ���ϼ���");    
 		        }
 	        } /* end of 302 */
 	        else if(res.MessageNum == 334) {
@@ -36,12 +36,12 @@ function connect() {
 	        else if(res.MessageNum == 304) { //�α׾ƿ�
 		        if(res.is_success == 1)
 		        {
-			        alert("�α׾ƿ� �Ǽ̽��ϴ�.");
+//			        alert("�α׾ƿ� �Ǽ̽��ϴ�.");
 			        location.href = "../index.html";
 		        }
 		        else 
 		        {
-			        alert("�α׾ƿ� ���ж�� ��ġ �������̳׿�. �����Ϸ� �ǽð� �ٽ��ѹ� �α׾ƿ� �����ּ���.");
+//			        alert("�α׾ƿ� ���ж�� ��ġ �������̳׿�. �����Ϸ� �ǽð� �ٽ��ѹ� �α׾ƿ� �����ּ���.");
 		        }
 	        }
 	        else if(res.MessageNum == 306) { //��� ���� ��������
@@ -98,7 +98,7 @@ function connect() {
 	        	}
 
 				console.log(arr);
-				alert("@");
+//				alert("@");
 	        	sessionStorage["subjectList"] = JSON.stringify(arr);
 	        	location.href = "../upload/cardgame.html";
 		        
@@ -136,8 +136,11 @@ function connect() {
 	        else if(res.MessageNum == 310) { //���� ���� �� ���� ���� ��������(�������� �������� ���� !)
 	        	var ppt = new Array();
 	        	var worksheet = new Array();
+	        	var card=new Array();
 	        	j = 0;
 	        	k = 0;
+	        	l = 0;
+
 	        	if(typeof res.activityList != "undefined") {
 		        	console.log(res.activityList);
 		        	for(i = 0; i < res.activityList.length;i++) {
@@ -151,11 +154,17 @@ function connect() {
 				        		worksheet[k].actNum = res.activityList[i].actNum;
 				        		worksheet[k].actName = res.activityList[i].actName;	     
 				        		k++;   			
-		        			} 
+		        			}else{
+		        				card[l] = new DTO();
+				        		card[l].actNum = res.activityList[i].actNum;
+				        		card[l].actName = res.activityList[i].actName;	     
+				        		l++;   					        				
+		        			}
 		        	}
 		        }
 	        	sessionStorage["selPptList"] = JSON.stringify(ppt);
 	        	sessionStorage["selWorksheetList"] = JSON.stringify(worksheet);
+	        	sessionStorage["selCardList"] = JSON.stringify(card);
 	       
 	        	getAllActivityList(); // ��� ��Ƽ��Ƽ ����Ʈ �޾ƿ��� ! 
 		        
@@ -200,8 +209,10 @@ function connect() {
 	        else if(res.MessageNum == 328) { //��翢Ƽ��Ƽ����Ʈ ��������
 	        	var ppt = new Array();
 	        	var worksheet = new Array();
+	        	var card=new Array();
 	        	j = 0;
 	        	k = 0;
+	        	l=0;
 	        	if(typeof res.activityList != "undefined") {
 		        	console.log(res.activityList);
 		        	for(i = 0; i < res.activityList.length;i++) {
@@ -215,11 +226,17 @@ function connect() {
 				        		worksheet[k].actNum = res.activityList[i].actNum;
 				        		worksheet[k].actName = res.activityList[i].actName;	     
 				        		k++;   			
-		        			} 
+		        			} else{
+		        				card[l] = new DTO();
+				        		card[l].actNum = res.activityList[i].actNum;
+				        		card[l].actName = res.activityList[i].actName;	     		        				
+		        				l++;
+		        			}
 		        	}
 		        }
 	        	sessionStorage["pptList"] = JSON.stringify(ppt);
 	        	sessionStorage["worksheetList"] = JSON.stringify(worksheet);
+	        	sessionStorage["cardList"] = JSON.stringify(card);
 	        	
 	        	location.href = "../lecture/make_lecture.html";
 	        }
@@ -292,10 +309,10 @@ function connect() {
 		    	}
 	        }
 	        else if(res.MessageNum == 312) {
-		        alert("�߰�����");
+//		        alert("�߰�����");
 	        }
 	        else if(res.MessageNum == 326) {
-		        alert("��������");
+//		        alert("��������");
 	        }
 	        else if(res.MessageNum == 320) { //��ũ��Ʈ ���ε� ���� 
 		        sessionStorage.setItem("ws_mode", "complete");
@@ -335,6 +352,9 @@ function connect() {
 
 
 		         
+	        }
+	        else if(res.MessageNum==348){
+	        	addCardItems(res);
 	        }
 	});
 }//end of connect

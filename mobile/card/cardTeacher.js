@@ -33,7 +33,7 @@ function setting(){
 
 	socket.emit('data', query);
 
-	setTimeout(letServerKnowTime,5000);
+	setTimeout(letServerKnowTime,3000);
 	/*
 
 
@@ -60,7 +60,17 @@ function countTime(){
 	document.getElementById('muniteShow').innerHTML=munite;
 	document.getElementById('secondShow').innerHTML=second;
 
-	setTimeout(countTime,1000);
+	if(totalTime<0){
+		var query={};
+		query.MessageNum=145;
+		var myId = sessionStorage.getItem('teacherId');
+		query.id=myId;
+		socket.emit('data', query);
+        location.href="../teaching/teaching.html";           
+	}else{
+		setTimeout(countTime,1000);		
+	}
+
 
 }
 

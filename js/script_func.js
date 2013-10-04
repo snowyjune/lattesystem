@@ -151,12 +151,12 @@ function deleteActivity(activityNum) {
 */
 function getPptList() {
 	var query = new DTO();
-	alert("11");
+//	alert("11");
 	sessionStorage.setItem("selMenu", "ppt");
 	query.MessageNum = 313;
 	query.id = sessionStorage["id"];
 	socket.emit('data', query);
-	alert("22");
+//	alert("22");
 	
 }
 
@@ -164,15 +164,12 @@ function getPptList() {
    카드게임 목록보기
 */
 function getCardgameList() {
-	alert("@");
+//	alert("@");
 	var query = new DTO();
 	sessionStorage.setItem("selMenu", "card");
 	query.MessageNum = 343;//////////////////////////////메세지 넘버 교체
 	query.id = sessionStorage["id"];
-	alert("1");
 	socket.emit('data', query);
-	alert("2");
-	alert(query.MessageNum);
 
 	
 }
@@ -241,6 +238,16 @@ function getWorksheetInfo(activityNum) {
 	query.id = sessionStorage["id"];
 	query.activityNum = activityNum;
 	console.log(query);
+	socket.emit('data', query);
+}
+
+function getCardGameInfo(activityNum) {
+	sessionStorage.setItem("uploadState","YES");
+
+	var query = new DTO();
+	query.MessageNum = 347;
+	query.id = sessionStorage["id"];
+	query.activityNum = activityNum;
 	socket.emit('data', query);
 }
 

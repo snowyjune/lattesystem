@@ -105,4 +105,5 @@ background-color:blue;
 margin-top:8;
 margin-left:10;
 background-image:url("./image/startButton.png");
+background-size: 100% 100%;
 }
