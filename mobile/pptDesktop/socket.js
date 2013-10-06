@@ -16,23 +16,23 @@ function connect() {
         if(res.MessageNum==302){
             if(res.is_success==1)
             {
-            alert("�ݰ����ϴ� "+res.id+"�����!");
+  //          alert("�ݰ����ϴ� "+res.id+"�����!");
             sessionStorage.setItem('id', res.id);
             sessionStorage.setItem('sort', 'teacher');
             startSharePPT(res);
             }
             else
             {
-            alert("������ Ȯ���ϼ���");
+//            alert("������ Ȯ���ϼ���");
             }
         }//end of if 102
         else if(res.MessageNum==402)
         {
-        alert("���� ������� ���� ���� ���߾� ��ٷ�~");
+//        alert("���� ������� ���� ���� ���߾� ��ٷ�~");
         }
         else if(res.MessageNum==403)
         {
-        alert("403 ����");
+//        alert("403 ����");
         showPPT(res);
         }
         else if(res.MessageNum==405)

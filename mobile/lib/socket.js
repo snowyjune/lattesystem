@@ -115,7 +115,7 @@ function connect() {
             }
             else
             {
-            alert("계정을 확인하세요");
+//            alert("계정을 확인하세요");
             }
         }//end of if 102
         else if(res.MessageNum==SERVER_RESPONSE_LOGIN_STU){
@@ -133,7 +133,7 @@ function connect() {
             }
             else
             {
-            alert("계정을 확인하세요");
+//            alert("계정을 확인하세요");
             }
         }//end of if 202
         else if(res.MessageNum==SERVER_RESPONSE_SUBJECTLIST_TEA)
