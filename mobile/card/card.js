@@ -117,7 +117,7 @@ function applyResult(res){
 		tempArrayForCard=[];
 
 	}else{
-    	setTimeout(reFlipCard,800);
+    	setTimeout(reFlipCard,1500);
 	}//end of else
 
 }//end of applyResult

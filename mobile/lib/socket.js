@@ -249,7 +249,7 @@ function connect() {
 
             applyResult(res);
 
-        }else if(res.MessageNum==SERVER_REQUEST_TURNSTART){
+        }else if(res.MessageNum==SERVER_REQUEST_TURNSTART||res.MessageNum=='237'||res.MessageNum==237){
             removeUnable();
         }else if(res.MessageNum==SERVER_REQUEST_CARDFLIPPED){
             flipCard(res);
@@ -257,7 +257,9 @@ function connect() {
             updateLeftProblems(res);
         }else if(res.MessageNum==SERVER_REQUEST_CARDGAMEEND){
             location.href="../learning/learning.html";           
-        }
+        }else{
+	//	removeUnable();
+	}
 
 
         
